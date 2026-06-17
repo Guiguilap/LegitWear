@@ -1541,7 +1541,13 @@ function SuccessPage({ onDashboard }) {
   const [showShare, setShowShare] = useState(false);const [showSuccess, setShowSuccess] = useState(false);
   const [toast, setToast] = useState("");
   const [toastVisible, setToastVisible] = useState(false);
-  useEffect(() => { if (user) setPage("dashboard"); }, []);
+  useEffect(() => {
+  if (typeof window !== "undefined" && window.location.search.includes("session_id")) {
+    setPage("success");
+  } else if (user) {
+    setPage("dashboard");
+  }
+}, []);
   const showToastMsg = msg => { setToast(msg); setToastVisible(true); setTimeout(() => setToastVisible(false), 2500); };
   const goAuth = mode => { setAuthMode(mode); setPage("auth"); };
   const onAuthSuccess = email => { setUser(email); setPage("dashboard"); showToastMsg("Connecté 👋"); };
