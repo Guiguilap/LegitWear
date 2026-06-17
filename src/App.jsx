@@ -1595,7 +1595,7 @@ const handleCheckout = async plan => {
       {page === "referral" && <ReferralPage user={user} onBack={onHome} onSignup={() => goAuth("signup")} showToast={showToastMsg} />}
       {page === "auth" && <AuthPage mode={authMode} onSuccess={onAuthSuccess} onToggle={() => setAuthMode(m => m === "login" ? "signup" : "login")} onBack={() => setPage(user ? "dashboard" : "landing")} />}
       {page === "dashboard" && user && <Dashboard userEmail={user} onShare={() => setShowShare(true)} onReferral={() => setPage("referral")} />}
-      {page === "cgu" && <CGUPage onBack={onHome} />}
+     {page === "success" && <SuccessPage onDashboard={() => { setPage("dashboard"); }} />} {page === "cgu" && <CGUPage onBack={onHome} />}
       {showShare && <ShareModal onClose={() => setShowShare(false)} />}
       <div className={"toast" + (toastVisible ? " show" : "")}>{toast}</div>
     </>
