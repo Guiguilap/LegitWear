@@ -1538,7 +1538,7 @@ function SuccessPage({ onDashboard }) {
   const [page, setPage] = useState("landing");
   const [authMode, setAuthMode] = useState("login");
   const [user, setUser] = useState(getSession);
-  const [showShare, setShowShare] = useState(false);
+  const [showShare, setShowShare] = useState(false);const [showSuccess, setShowSuccess] = useState(false);
   const [toast, setToast] = useState("");
   const [toastVisible, setToastVisible] = useState(false);
   useEffect(() => { if (user) setPage("dashboard"); }, []);
