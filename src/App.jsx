@@ -1414,7 +1414,28 @@ export default function App() {
   const onAuthSuccess = email => { setUser(email); setPage("dashboard"); showToastMsg("Connecté 👋"); };
   const onLogout = () => { clearSession(); setUser(null); setPage("landing"); showToastMsg("Déconnecté."); };
   const onSwitchAccount = () => { clearSession(); setUser(null); setAuthMode("login"); setPage("auth"); };
-  const handleCheckout = plan => { if (!user) { setAuthMode("signup"); setPage("auth"); } else { showToastMsg("Redirection paiement…"); } };
+ const PRICE_IDS = {
+  starter: import.meta.env.VITE_STRIPE_STARTER_PRICE,
+  pro: import.meta.env.VITE_STRIPE_PRO_PRICE,
+  premium: import.meta.env.VITE_STRIPE_PREMIUM_PRICE,
+};
+
+const handleCheckout = async plan => {
+  if (!user) { setAuthMode("signup"); setPage("auth"); return; }
+  showToastMsg("Redirection vers le paiement…");
+  try {
+    const res = await fetch("/api/create-checkout-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ priceId: PRICE_IDS[plan], email: user }),
+    });
+    const data = await res.json();
+    if (data.url) window.location.href = data.url;
+    else showToastMsg("Erreur paiement, réessaie.");
+  } catch(e) {
+    showToastMsg("Erreur paiement, réessaie.");
+  }
+};
   const onHome = () => setPage(user ? "dashboard" : "landing");
 
   const navProps = {
