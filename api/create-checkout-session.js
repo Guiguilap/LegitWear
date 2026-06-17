@@ -22,7 +22,7 @@ export default async function handler(req, res) {
         trial_period_days: 7,
       },
       customer_email: email || undefined,
-      success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `${req.headers.origin}/?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.origin}/`,
     });
 
