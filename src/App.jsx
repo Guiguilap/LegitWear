@@ -1436,7 +1436,7 @@ const handleCheckout = async plan => {
     showToastMsg("Erreur paiement, réessaie.");
   }
 };
-  const onHome = () => setPage(user ? "dashboard" : "landing");
+  const onHome = () => setPage("landing");
 
   const navProps = {
     user, onLogin: () => goAuth("login"), onSignup: () => goAuth("signup"),
