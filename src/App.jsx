@@ -1401,7 +1401,140 @@ function CGUPage({ onBack }) {
 }
 
 // ─── APP ─────────────────────────────────────────────────────────────────────
-export default function App() {
+// Ajoute ce composant dans ton App.jsx, juste avant le export default function App()
+
+function SuccessPage({ onDashboard }) {
+  const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    const timers = [
+      setTimeout(() => setStep(1), 400),
+      setTimeout(() => setStep(2), 900),
+      setTimeout(() => setStep(3), 1400),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  return (
+    <div style={{
+      minHeight:"100vh",background:"var(--ink)",display:"flex",flexDirection:"column",
+      alignItems:"center",justifyContent:"center",padding:"40px 24px",position:"relative",overflow:"hidden"
+    }}>
+      {/* Glow background */}
+      <div style={{
+        position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)",
+        width:600,height:600,background:"radial-gradient(ellipse,rgba(196,168,130,0.08) 0%,transparent 70%)",
+        pointerEvents:"none"
+      }}/>
+
+      {/* Cercle animé */}
+      <div style={{
+        width:96,height:96,borderRadius:"50%",border:"1px solid rgba(196,168,130,0.3)",
+        display:"flex",alignItems:"center",justifyContent:"center",marginBottom:32,
+        position:"relative",
+        opacity: step >= 1 ? 1 : 0,
+        transform: step >= 1 ? "scale(1)" : "scale(0.5)",
+        transition:"all 0.6s cubic-bezier(0.34,1.56,0.64,1)",
+      }}>
+        <div style={{
+          width:72,height:72,borderRadius:"50%",background:"rgba(61,122,92,0.15)",
+          border:"1px solid rgba(61,122,92,0.4)",display:"flex",alignItems:"center",justifyContent:"center"
+        }}>
+          <span style={{fontSize:28}}>✓</span>
+        </div>
+        {/* Ring animé */}
+        <div style={{
+          position:"absolute",inset:-8,borderRadius:"50%",
+          border:"1px solid rgba(196,168,130,0.15)",
+          animation: step >= 1 ? "ringPulse 2s ease-in-out infinite" : "none"
+        }}/>
+      </div>
+
+      {/* Texte principal */}
+      <div style={{
+        textAlign:"center",maxWidth:480,
+        opacity: step >= 2 ? 1 : 0,
+        transform: step >= 2 ? "translateY(0)" : "translateY(20px)",
+        transition:"all 0.6s ease",
+      }}>
+        <div style={{
+          fontFamily:"'Space Grotesk',sans-serif",fontSize:10,letterSpacing:"0.2em",
+          textTransform:"uppercase",color:"var(--accent2)",marginBottom:16,fontWeight:400
+        }}>
+          Bienvenue dans la famille
+        </div>
+        <h1 style={{
+          fontFamily:"'Syne',sans-serif",fontSize:"clamp(28px,5vw,48px)",fontWeight:800,
+          color:"var(--cream)",lineHeight:1.02,letterSpacing:"-0.03em",marginBottom:16
+        }}>
+          Ton essai gratuit<br />est <em style={{fontStyle:"italic",color:"var(--accent)"}}>activé.</em>
+        </h1>
+        <p style={{
+          fontSize:14,color:"rgba(247,244,239,0.5)",lineHeight:1.7,fontWeight:300,marginBottom:40
+        }}>
+          7 jours pour authentifier autant d'articles que tu veux.<br />
+          Aucun débit avant la fin de la période d'essai.
+        </p>
+      </div>
+
+      {/* Cards features */}
+      <div style={{
+        display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:8,width:"100%",maxWidth:480,marginBottom:40,
+        opacity: step >= 3 ? 1 : 0,
+        transform: step >= 3 ? "translateY(0)" : "translateY(20px)",
+        transition:"all 0.6s ease",
+      }}>
+        {[
+          { icon:"🔍", label:"Scans illimités", sub:"pendant 7 jours" },
+          { icon:"⚡", label:"Résultats", sub:"en moins de 10s" },
+          { icon:"📄", label:"Rapports PDF", sub:"exportables" },
+        ].map((f,i) => (
+          <div key={i} style={{
+            background:"rgba(247,244,239,0.04)",border:"1px solid rgba(247,244,239,0.08)",
+            borderRadius:6,padding:"16px 12px",textAlign:"center"
+          }}>
+            <div style={{fontSize:20,marginBottom:8}}>{f.icon}</div>
+            <div style={{fontFamily:"'Syne',sans-serif",fontSize:12,fontWeight:700,color:"var(--cream)",marginBottom:3}}>{f.label}</div>
+            <div style={{fontSize:10,color:"rgba(247,244,239,0.35)",fontWeight:300}}>{f.sub}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* CTA */}
+      <div style={{
+        display:"flex",flexDirection:"column",alignItems:"center",gap:12,
+        opacity: step >= 3 ? 1 : 0,
+        transform: step >= 3 ? "translateY(0)" : "translateY(20px)",
+        transition:"all 0.6s 0.1s ease",
+      }}>
+        <button
+          onClick={onDashboard}
+          style={{
+            fontFamily:"'Space Grotesk',sans-serif",fontSize:11,fontWeight:600,
+            letterSpacing:"0.16em",textTransform:"uppercase",
+            padding:"13px 36px",borderRadius:3,cursor:"pointer",border:"none",
+            background:"linear-gradient(135deg,var(--accent),var(--accent2))",
+            color:"var(--ink)",transition:"all 0.25s",boxShadow:"0 4px 24px rgba(196,168,130,0.25)"
+          }}
+          onMouseOver={e => e.currentTarget.style.transform="translateY(-2px)"}
+          onMouseOut={e => e.currentTarget.style.transform="translateY(0)"}
+        >
+          Lancer mon premier scan →
+        </button>
+        <div style={{fontSize:11,color:"rgba(247,244,239,0.25)",fontWeight:300}}>
+          Un email de confirmation a été envoyé à ton adresse
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes ringPulse {
+          0%,100%{transform:scale(1);opacity:0.4}
+          50%{transform:scale(1.15);opacity:0.1}
+        }
+      `}</style>
+    </div>
+  );
+}export default function App() {
   const [page, setPage] = useState("landing");
   const [authMode, setAuthMode] = useState("login");
   const [user, setUser] = useState(getSession);
