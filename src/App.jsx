@@ -567,7 +567,7 @@ function Navbar({ user, onLogin, onSignup, onLogout, onDashboard, onHome, onShar
                 </div>
                 <button className="dropdown-item" onClick={() => { setMenuOpen(false); onDashboard(); }}>🔍 Mon espace</button>
                 <button className="dropdown-item" onClick={() => { setMenuOpen(false); onReferral(); }}>🎁 Parrainer un ami</button>
-                <button className="dropdown-item" onClick={() => { setMenuOpen(false); onShare(); }}>🔗 Partager</button>
+             <div className="tab" onClick={() => window.open("https://billing.stripe.com/p/login/28E14pdqs72o3IPdOieAg00", "_blank")}>💳 Mon abonnement</div>  <button className="dropdown-item" onClick={() => { setMenuOpen(false); onShare(); }}>🔗 Partager</button>
                 <div className="dropdown-sep" />
                 <button className="dropdown-item" onClick={() => { setMenuOpen(false); onSwitchAccount(); }}>↔️ Changer de compte</button>
                 <button className="dropdown-item danger" onClick={() => { setMenuOpen(false); onLogout(); }}>→ Se déconnecter</button>
