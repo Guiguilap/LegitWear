@@ -656,7 +656,7 @@ function Landing({ onLogin, onSignup, onShare, onCheckout, onCGU, onHow, onConta
     { img:"https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=600&h=400&fit=crop", icon:"🛡", t:"Anti-arnaque", d:"Évitez les fakes sur Vinted, Vestiaire Collective, eBay ou Leboncoin avant d'acheter." },
 { img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&h=400&fit=crop", icon:"🔍", t:"Indices détaillés", d:"Chaque point analysé est expliqué — vous comprenez pourquoi, pas juste ce que." },
 { img:"https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=600&h=400&fit=crop", icon:"⚡", t:"Résultat express", d:"Moins de 10 secondes pour un verdict complet, 24h/24." },
-{ img:"https://images.unsplash.com/photo-1583394293214-0b3a3a3a3a3a?w=600&h=400&fit=crop", icon:"🧠", t:"Toutes les marques", d:"Streetwear, luxe, sneakers — Nike, Jordan, LV, Gucci, Supreme, Stone Island..." },
+{ img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop", icon:"🧠", t:"Toutes les marques", d:"Streetwear, luxe, sneakers — Nike, Jordan, LV, Gucci, Supreme, Stone Island..." },,
 { img:"https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600&h=400&fit=crop", icon:"📁", t:"Historique personnel", d:"Retrouvez tous vos scans passés, organisés et consultables à tout moment." },
 { img:"https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=400&fit=crop", icon:"📄", t:"Rapport PDF", d:"Exportez un rapport complet après chaque scan — idéal pour les pros." },
           ].map(f => (
