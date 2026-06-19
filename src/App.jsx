@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-
+import antiArnaqueImg from './assets/anti-arnaque.svg';
+import toutesMarquesImg from './assets/toutes-marques.svg';
 const ANTHROPIC_API_KEY = "sk-ant-api03-svEdtGM8DAYvkg8aIf9P799x25SaUbLriEWFpBiuZIL18wZeBAJTddub3z9w4o34H162Z9Rt62jQZt1FLR4vrA-XIEdQQAA";
 
 const STYLES = `
