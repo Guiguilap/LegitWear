@@ -96,9 +96,10 @@ const STYLES = `
 
   .refdb-section{padding:64px 24px;background:var(--cream2)}
   .refdb-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .refdb-card{background:var(--cream);border:1px solid var(--border);border-radius:4px;padding:14px;display:flex;gap:10px;align-items:flex-start}
+ .refdb-card{background:var(--cream);border:1px solid var(--border);border-radius:6px;padding:22px 20px;transition:all 0.25s}
+.refdb-card:hover{border-color:var(--accent2);box-shadow:var(--shadow)}
   .refdb-thumb{width:40px;height:40px;border-radius:3px;object-fit:cover;background:var(--cream2);flex-shrink:0;border:1px solid var(--border)}
-  .refdb-brand{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--ink);margin-bottom:2px}
+  .refdb-brand{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:4px;letter-spacing:-0.01em}
   .refdb-type{font-size:10px;color:var(--ink-faint);font-weight:300;margin-bottom:5px}
   .refdb-tags{display:flex;gap:3px;flex-wrap:wrap}
   .refdb-tag{font-size:9px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:2px 6px;border-radius:2px}
