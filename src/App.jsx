@@ -681,29 +681,28 @@ function Landing({ onLogin, onSignup, onShare, onCheckout, onCGU, onHow, onConta
         <div className="section-eyebrow">Base de données</div>
         <div className="section-title" style={{marginBottom:28}}>Des milliers de<br /><em>références vérifiées.</em></div>
         <div className="refdb-grid">
-          {[
-            { brand:"Nike", type:"Air Jordan 4", tags:["authentic","fake"], img:"https://picsum.photos/seed/nike1/80/80" },
-            { brand:"Supreme", type:"Box Logo Hoodie", tags:["authentic","fake"], img:"https://picsum.photos/seed/sup1/80/80" },
-            { brand:"Stone Island", type:"Patch Badge", tags:["authentic","fake"], img:"https://picsum.photos/seed/si1/80/80" },
-            { brand:"Jordan", type:"Air Jordan 1", tags:["authentic","fake"], img:"https://picsum.photos/seed/jd1/80/80" },
-            { brand:"Louis Vuitton", type:"Monogram", tags:["locked"], img:"https://picsum.photos/seed/lv1/80/80" },
-            { brand:"Gucci", type:"GG Canvas", tags:["locked"], img:"https://picsum.photos/seed/gc1/80/80" },
-            { brand:"Balenciaga", type:"Triple S", tags:["locked"], img:"https://picsum.photos/seed/bal1/80/80" },
-            { brand:"Off-White", type:"Arrow Tee", tags:["locked"], img:"https://picsum.photos/seed/ow1/80/80" },
-          ].map((r, i) => (
-            <div className="refdb-card" key={i}>
-              <img className="refdb-thumb" src={r.img} alt={r.brand} />
-              <div>
-                <div className="refdb-brand">{r.brand}</div>
-                <div className="refdb-type">{r.type}</div>
-                <div className="refdb-tags">
-                  {r.tags.includes("authentic") && <span className="refdb-tag authentic">✓ Vrai</span>}
-                  {r.tags.includes("fake") && <span className="refdb-tag fake">✗ Fake</span>}
-                  {r.tags.includes("locked") && <span className="refdb-tag locked">🔒 Pro</span>}
-                </div>
-              </div>
-            </div>
-          ))}
+         {[
+  { brand:"Nike", type:"Air Jordan 4", tags:["authentic","fake"] },
+  { brand:"Supreme", type:"Box Logo Hoodie", tags:["authentic","fake"] },
+  { brand:"Stone Island", type:"Patch Badge", tags:["authentic","fake"] },
+  { brand:"Jordan", type:"Air Jordan 1", tags:["authentic","fake"] },
+  { brand:"Louis Vuitton", type:"Monogram", tags:["locked"] },
+  { brand:"Gucci", type:"GG Canvas", tags:["locked"] },
+  { brand:"Balenciaga", type:"Triple S", tags:["locked"] },
+  { brand:"Off-White", type:"Arrow Tee", tags:["locked"] },
+].map((r, i) => (
+  <div className="refdb-card" key={i}>
+    <div>
+      <div className="refdb-brand">{r.brand}</div>
+      <div className="refdb-type">{r.type}</div>
+      <div className="refdb-tags">
+        {r.tags.includes("authentic") && <span className="refdb-tag authentic">✓ Vrai</span>}
+        {r.tags.includes("fake") && <span className="refdb-tag fake">✗ Fake</span>}
+        {r.tags.includes("locked") && <span className="refdb-tag locked">🔒 Pro</span>}
+      </div>
+    </div>
+  </div>
+))}
         </div>
         <div className="refdb-count">+2 400 références · Mis à jour chaque semaine · Accès complet dès le plan Pro</div>
       </section>
