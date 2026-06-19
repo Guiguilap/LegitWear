@@ -166,7 +166,7 @@ const STYLES = `
   .pricing-free span{color:var(--ink);border-bottom:1px solid var(--border);cursor:pointer}
 
   .cta-section{padding:72px 24px;text-align:center;background:var(--ink);position:relative;overflow:hidden}
-  .cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(196,168,130,0.08) 0%,transparent 70%)}
+  .cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(196,168,130,0.08) 0%,transparent 70%);pointer-events:none}
   .cta-section h2{font-family:'Syne',sans-serif;font-size:clamp(28px,6vw,52px);font-weight:800;line-height:1.05;color:var(--cream);margin-bottom:12px;position:relative;letter-spacing:-0.02em}
   .cta-section h2 em{font-style:italic;color:var(--accent)}
   .cta-section p{font-size:13px;color:rgba(247,244,239,0.5);margin-bottom:32px;position:relative;font-weight:300}
