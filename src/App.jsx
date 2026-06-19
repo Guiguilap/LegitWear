@@ -1227,7 +1227,7 @@ function ScanTab({ userEmail }) {
         onDragLeave={() => setDrag(false)}
         onDrop={e => { e.preventDefault(); setDrag(false); addFiles(e.dataTransfer.files); }}
         onClick={() => ref.current && ref.current.click()}>
-        <input ref={ref} type="file" accept="image/*" multiple onChange={e => addFiles(e.target.files)} />
+        <input ref={ref} type="file" accept="image/*,image/heic,image/heif" multiple onChange={e => addFiles(e.target.files)} />
         <div className="upload-icon">↑</div>
         <div className="upload-title">Déposez vos photos ici</div>
         <div className="upload-hint">Logo, couture, étiquette, semelle — jusqu'à 6 photos</div>
