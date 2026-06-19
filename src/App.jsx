@@ -1222,11 +1222,11 @@ function ScanTab({ userEmail }) {
   return (
     <div className="scan-card">
       <div className="scan-label">Nouvelle analyse</div>
-      <div className={"upload-zone" + (drag ? " drag" : "")}
-        onDragOver={e => { e.preventDefault(); setDrag(true); }}
-        onDragLeave={() => setDrag(false)}
-        onDrop={e => { e.preventDefault(); setDrag(false); addFiles(e.dataTransfer.files); }}
-        onClick={() => ref.current && ref.current.click()}>
+    <div className={"upload-zone" + (drag ? " drag" : "")}
+  onDragOver={e => { e.preventDefault(); setDrag(true); }}
+  onDragLeave={() => setDrag(false)}
+  onDrop={e => { e.preventDefault(); setDrag(false); addFiles(e.dataTransfer.files); }}
+  onClick={() => ref.current && ref.current.click()}>
         <input ref={ref} type="file" accept="image/*,image/heic,image/heif" multiple onChange={e => addFiles(e.target.files)} />
         <div className="upload-icon">↑</div>
         <div className="upload-title">Déposez vos photos ici</div>
