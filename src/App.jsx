@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import antiArnaqueImg from './assets/anti-arnaque.svg';
 import toutesMarquesImg from './assets/toutes-marques.svg';
+import indicesImg from './assets/indices-detailles.svg';
+import historiqueImg from './assets/historique-personnel.svg';
 const ANTHROPIC_API_KEY = "sk-ant-api03-svEdtGM8DAYvkg8aIf9P799x25SaUbLriEWFpBiuZIL18wZeBAJTddub3z9w4o34H162Z9Rt62jQZt1FLR4vrA-XIEdQQAA";
 
 const STYLES = `
@@ -655,10 +657,10 @@ function Landing({ onLogin, onSignup, onShare, onCheckout, onCGU, onHow, onConta
         <div className="photo-features">
           {[
 { img: antiArnaqueImg, icon:"🛡", t:"Anti-arnaque", d:"Évitez les fakes sur Vinted, Vestiaire Collective, eBay ou Leboncoin avant d'acheter." },
-{ img:"https://images.unsplash.com/photo-1465479423260-c4afc24172c6?w=600&h=400&fit=crop", icon:"🔍", t:"Indices détaillés", d:"Chaque point analysé est expliqué — vous comprenez pourquoi, pas juste ce que." },
+{ img: indicesImg, icon:"🔍", t:"Indices détaillés", d:"Chaque point analysé est expliqué — vous comprenez pourquoi, pas juste ce que." },
 { img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=400&fit=crop", icon:"⚡", t:"Résultat express", d:"Moins de 10 secondes pour un verdict complet, 24h/24." },
 { img: toutesMarquesImg, icon:"🧠", t:"Toutes les marques", d:"Streetwear, luxe, sneakers — Nike, Jordan, LV, Gucci, Supreme, Stone Island..." },
-{ img:"https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop", icon:"📁", t:"Historique personnel", d:"Retrouvez tous vos scans passés, organisés et consultables à tout moment." },
+{ img: historiqueImg, icon:"📁", t:"Historique personnel", d:"Retrouvez tous vos scans passés, organisés et consultables à tout moment." },
 { img:"https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=400&fit=crop", icon:"📄", t:"Rapport PDF", d:"Exportez un rapport complet après chaque scan — idéal pour les pros." },
           ].map(f => (
             <div className="photo-feat" key={f.t}>
