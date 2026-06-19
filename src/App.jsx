@@ -653,10 +653,10 @@ function Landing({ onLogin, onSignup, onShare, onCheckout, onCGU, onHow, onConta
         <div className="section-title">Conçu pour les<br /><em>vrais acheteurs.</em></div>
         <div className="photo-features">
           {[
-  { img:"https://images.unsplash.com/photo-1597983073493-88cd35cf7bf3?w=600&h=400&fit=crop", icon:"🛡", t:"Anti-arnaque", d:"Évitez les fakes sur Vinted, Vestiaire Collective, eBay ou Leboncoin avant d'acheter." },
+ { img:"https://images.unsplash.com/photo-1605408499391-6368c628ef42?w=600&h=400&fit=crop", icon:"🛡", t:"Anti-arnaque", d:"Évitez les fakes sur Vinted, Vestiaire Collective, eBay ou Leboncoin avant d'acheter." },
 { img:"https://images.unsplash.com/photo-1465479423260-c4afc24172c6?w=600&h=400&fit=crop", icon:"🔍", t:"Indices détaillés", d:"Chaque point analysé est expliqué — vous comprenez pourquoi, pas juste ce que." },
 { img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=400&fit=crop", icon:"⚡", t:"Résultat express", d:"Moins de 10 secondes pour un verdict complet, 24h/24." },
-{ img:"https://images.unsplash.com/photo-1556906781-9a412961a0bd?w=600&h=400&fit=crop", icon:"🧠", t:"Toutes les marques", d:"Streetwear, luxe, sneakers — Nike, Jordan, LV, Gucci, Supreme, Stone Island..." },
+{ img:"https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&h=400&fit=crop", icon:"🧠", t:"Toutes les marques", d:"Streetwear, luxe, sneakers — Nike, Jordan, LV, Gucci, Supreme, Stone Island..." },
 { img:"https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop", icon:"📁", t:"Historique personnel", d:"Retrouvez tous vos scans passés, organisés et consultables à tout moment." },
 { img:"https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=400&fit=crop", icon:"📄", t:"Rapport PDF", d:"Exportez un rapport complet après chaque scan — idéal pour les pros." },
           ].map(f => (
