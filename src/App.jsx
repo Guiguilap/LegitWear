@@ -654,7 +654,7 @@ function Landing({ onLogin, onSignup, onShare, onCheckout, onCGU, onHow, onConta
         <div className="section-title">Conçu pour les<br /><em>vrais acheteurs.</em></div>
         <div className="photo-features">
           {[
- { img:"https://images.unsplash.com/photo-1605408499391-6368c628ef42?w=600&h=400&fit=crop", icon:"🛡", t:"Anti-arnaque", d:"Évitez les fakes sur Vinted, Vestiaire Collective, eBay ou Leboncoin avant d'acheter." },
+{ img: antiArnaqueImg, icon:"🛡", t:"Anti-arnaque", d:"Évitez les fakes sur Vinted, Vestiaire Collective, eBay ou Leboncoin avant d'acheter." },
 { img:"https://images.unsplash.com/photo-1465479423260-c4afc24172c6?w=600&h=400&fit=crop", icon:"🔍", t:"Indices détaillés", d:"Chaque point analysé est expliqué — vous comprenez pourquoi, pas juste ce que." },
 { img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=400&fit=crop", icon:"⚡", t:"Résultat express", d:"Moins de 10 secondes pour un verdict complet, 24h/24." },
 { img:"https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&h=400&fit=crop", icon:"🧠", t:"Toutes les marques", d:"Streetwear, luxe, sneakers — Nike, Jordan, LV, Gucci, Supreme, Stone Island..." },
