@@ -476,21 +476,6 @@ const toBase64 = file => new Promise((res, rej) => {
   reader.onerror = rej;
   reader.readAsDataURL(file);
 });
-      const canvas = document.createElement("canvas");
-      canvas.width = width;
-      canvas.height = height;
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(img, 0, 0, width, height);
-      const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
-      res({ data: dataUrl.split(",")[1], type: "image/jpeg", url: dataUrl });
-    };
-    img.onerror = rej;
-    img.src = reader.result;
-  };
-  reader.onerror = rej;
-  reader.readAsDataURL(file);
-});
-
 const getReferralCode = email => {
   if (!email) return null;
   const u = getUsers();
