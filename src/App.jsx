@@ -448,11 +448,35 @@ const addHistory = (email, item) => {
   u[email].history = [item, ...(u[email].history || [])].slice(0, 50);
   saveUsers(u);
 };
+// Remplace la fonction toBase64 existante par celle-ci dans App.jsx
+
 const toBase64 = file => new Promise((res, rej) => {
-  const r = new FileReader();
-  r.onload = () => res({ data: r.result.split(",")[1], type: file.type, url: r.result });
-  r.onerror = rej;
-  r.readAsDataURL(file);
+  const reader = new FileReader();
+  reader.onload = () => {
+    const img = new Image();
+    img.onload = () => {
+      const MAX_DIM = 1280;
+      let { width, height } = img;
+      if (width > height && width > MAX_DIM) {
+        height = Math.round(height * (MAX_DIM / width));
+        width = MAX_DIM;
+      } else if (height > MAX_DIM) {
+        width = Math.round(width * (MAX_DIM / height));
+        height = MAX_DIM;
+      }
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, width, height);
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
+      res({ data: dataUrl.split(",")[1], type: "image/jpeg", url: dataUrl });
+    };
+    img.onerror = rej;
+    img.src = reader.result;
+  };
+  reader.onerror = rej;
+  reader.readAsDataURL(file);
 });
 
 const getReferralCode = email => {
