@@ -448,8 +448,6 @@ const addHistory = (email, item) => {
   u[email].history = [item, ...(u[email].history || [])].slice(0, 50);
   saveUsers(u);
 };
-// Remplace la fonction toBase64 existante par celle-ci dans App.jsx
-
 const toBase64 = file => new Promise((res, rej) => {
   const reader = new FileReader();
   reader.onload = () => {
@@ -464,6 +462,20 @@ const toBase64 = file => new Promise((res, rej) => {
         width = Math.round(width * (MAX_DIM / height));
         height = MAX_DIM;
       }
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, width, height);
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
+      res({ data: dataUrl.split(",")[1], type: "image/jpeg", url: dataUrl });
+    };
+    img.onerror = rej;
+    img.src = reader.result;
+  };
+  reader.onerror = rej;
+  reader.readAsDataURL(file);
+});
       const canvas = document.createElement("canvas");
       canvas.width = width;
       canvas.height = height;
