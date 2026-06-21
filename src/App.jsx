@@ -5,7 +5,7 @@ import indicesImg from './assets/indices-detailles.svg';
 import historiqueImg from './assets/historique-personnel.svg';
 import resultatImg from './assets/resultat-express.svg';
 import rapportImg from './assets/rapport-pdf.svg';
-const ANTHROPIC_API_KEY = "sk-ant-api03-svEdtGM8DAYvkg8aIf9P799x25SaUbLriEWFpBiuZIL18wZeBAJTddub3z9w4o34H162Z9Rt62jQZt1FLR4vrA-XIEdQQAA";
+
 
 const STYLES = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap');
