@@ -1538,6 +1538,15 @@ function SuccessPage({ onDashboard }) {
       `}</style>
     </div>
   );
+}const DISPOSABLE_DOMAINS = ["test.com","test.fr","example.com","mailinator.com","yopmail.com","tempmail.com","guerrillamail.com","10minutemail.com","fakeinbox.com","trashmail.com"];
+
+function isValidEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  if (!re.test(email)) return { valid: false, reason: "Format d'email invalide." };
+  const domain = email.split("@")[1].toLowerCase();
+  if (DISPOSABLE_DOMAINS.includes(domain)) return { valid: false, reason: "Merci d'utiliser une adresse email réelle." };
+  if (/^(.)\1*@/.test(email.split("@")[0]) && email.split("@")[0].length > 1) return { valid: false, reason: "Adresse email suspecte." };
+  return { valid: true };
 }export default function App() {
   const [page, setPage] = useState("landing");
   const [authMode, setAuthMode] = useState("login");
