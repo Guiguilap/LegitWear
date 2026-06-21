@@ -1096,6 +1096,8 @@ function AuthPage({ mode, onSuccess, onToggle, onBack }) {
     setError("");
     if (!email || !password) return setError("Veuillez remplir tous les champs.");
     if (password.length < 6) return setError("Le mot de passe doit faire au moins 6 caractères.");
+    const emailCheck = isValidEmail(email);
+if (!emailCheck.valid) return setError(emailCheck.reason);
     setLoading(true);
     setTimeout(() => {
       const users = getUsers();
