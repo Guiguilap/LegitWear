@@ -1556,7 +1556,7 @@ function isValidEmail(email) {
   if (localPart === domainName) return { valid: false, reason: "Merci d'utiliser une adresse email réelle." };
   return { valid: true };
 }
-}export default function App() {
+export default function App() {
   const [page, setPage] = useState("landing");
   const [authMode, setAuthMode] = useState("login");
   const [user, setUser] = useState(getSession);
