@@ -1112,7 +1112,15 @@ if (mode === "signup") {
   onSuccess(email, true);
 } else {
   const { data, error: signInError } = await supabase.auth.signInWithPassword({ email, password });
-  if (signInError) { setError("Email ou mot de passe incorrect."); setLoading(false); return; }
+if (signInError) {
+  if (signInError.message.toLowerCase().includes("email not confirmed")) {
+    setError("Merci de confirmer ton adresse email avant de te connecter (vérifie ta boîte mail).");
+  } else {
+    setError("Email ou mot de passe incorrect.");
+  }
+  setLoading(false);
+  return;
+}
   setSession(email);
   onSuccess(email, false);
   setLoading(false);
