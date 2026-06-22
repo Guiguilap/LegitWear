@@ -1093,7 +1093,7 @@ function AuthPage({ mode, onSuccess, onToggle, onBack }) {
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const handle = () => {
+  const handle = async () => {
     setError("");
     if (!email || !password) return setError("Veuillez remplir tous les champs.");
     if (password.length < 6) return setError("Le mot de passe doit faire au moins 6 caractères.");
