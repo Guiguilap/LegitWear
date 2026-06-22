@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { supabase } from "./supabase.js";
 import antiArnaqueImg from './assets/anti-arnaque.svg';
 import toutesMarquesImg from './assets/toutes-marques.svg';
 import indicesImg from './assets/indices-detailles.svg';
@@ -1098,19 +1099,24 @@ function AuthPage({ mode, onSuccess, onToggle, onBack }) {
     if (password.length < 6) return setError("Le mot de passe doit faire au moins 6 caractères.");
     const emailCheck = isValidEmail(email);
 if (!emailCheck.valid) return setError(emailCheck.reason);
-    setLoading(true);
-    setTimeout(() => {
-      const users = getUsers();
-      if (mode === "signup") {
-        if (users[email]) { setError("Cet email est déjà utilisé."); setLoading(false); return; }
-        users[email] = { email, password, name: name || email.split("@")[0], history: [], referralStats: { invited:0, joined:0, scansEarned:0 } };
-        saveUsers(users); setSession(email); onSuccess(email);
-      } else {
-        if (!users[email] || users[email].password !== password) { setError("Email ou mot de passe incorrect."); setLoading(false); return; }
-        setSession(email); onSuccess(email);
-      }
-      setLoading(false);
-    }, 500);
+   setLoading(true);
+if (mode === "signup") {
+  const { error: signUpError } = await supabase.auth.signUp({
+    email,
+    password,
+    options: { data: { name: name || email.split("@")[0] } }
+  });
+  if (signUpError) { setError(signUpError.message); setLoading(false); return; }
+  setError("");
+  setLoading(false);
+  onSuccess(email, true);
+} else {
+  const { data, error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+  if (signInError) { setError("Email ou mot de passe incorrect."); setLoading(false); return; }
+  setSession(email);
+  onSuccess(email, false);
+  setLoading(false);
+}
   };
   return (
     <div className="auth-page">
