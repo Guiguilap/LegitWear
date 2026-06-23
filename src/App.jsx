@@ -1101,11 +1101,12 @@ function AuthPage({ mode, onSuccess, onToggle, onBack }) {
 if (!emailCheck.valid) return setError(emailCheck.reason);
    setLoading(true);
 if (mode === "signup") {
-  const { error: signUpError } = await supabase.auth.signUp({
-    email,
-    password,
-    options: { data: { name: name || email.split("@")[0] } }
-  });
+const refCode = typeof window !== "undefined" ? sessionStorage.getItem("lw_ref_code") : null;
+const { error: signUpError } = await supabase.auth.signUp({
+  email,
+  password,
+  options: { data: { name: name || email.split("@")[0], ref_code: refCode || null } }
+});
   if (signUpError) { setError(signUpError.message); setLoading(false); return; }
   setError("");
   setLoading(false);
