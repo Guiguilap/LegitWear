@@ -1598,12 +1598,15 @@ export default function App() {
 const handleCheckout = async plan => {
   if (!user) { setAuthMode("signup"); setPage("auth"); return; }
   showToastMsg("Redirection vers le paiement…");
-  try {
-    const res = await fetch("/api/create-checkout-session", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ priceId: PRICE_IDS[plan], email: user }),
-    });
+ try {
+  const { data: { session: authSession } } = await supabase.auth.getSession();
+  const userId = authSession?.user?.id;
+
+  const res = await fetch("/api/create-checkout-session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ priceId: PRICE_IDS[plan], email: user, userId }),
+  });
     const data = await res.json();
     if (data.url) window.location.href = data.url;
     else showToastMsg("Erreur paiement, réessaie.");
