@@ -1069,9 +1069,12 @@ function ReferralPage({ user, onBack, onSignup, showToast }) {
         </div>
       </div>
 
-      {user ? (
-        <>
-          <div className="referral-stats">
+     {user ? (
+  !stats ? (
+    <div style={{textAlign:"center", padding:"24px"}}>Chargement...</div>
+  ) : (
+  <>
+    <div className="referral-stats">
             <div className="referral-stat">
               <div className="referral-stat-val">{stats.invited}</div>
               <div className="referral-stat-label">Invités</div>
