@@ -935,7 +935,7 @@ function ContactPage({ onBack }) {
         <div className="contact-method">
           <div className="contact-method-icon">✉️</div>
           <div className="contact-method-label">Email</div>
-          <div className="contact-method-val">support@legitwear.app</div>
+        <div className="contact-method-val">legitwear.contact1@gmail.com</div>
         </div>
         <div className="contact-method">
           <div className="contact-method-icon">⏱</div>
