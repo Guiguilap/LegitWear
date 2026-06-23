@@ -1641,6 +1641,14 @@ export default function App() {
     setPage("dashboard");
   }
 }, []);
+  useEffect(() => {
+  if (typeof window !== "undefined") {
+    const refCode = new URLSearchParams(window.location.search).get("ref");
+    if (refCode) {
+      sessionStorage.setItem("lw_ref_code", refCode);
+    }
+  }
+}, []);
   const showToastMsg = msg => { setToast(msg); setToastVisible(true); setTimeout(() => setToastVisible(false), 2500); };
   const goAuth = mode => { setAuthMode(mode); setPage("auth"); };
   const onAuthSuccess = email => { setUser(email); setPage("dashboard"); showToastMsg("Connecté 👋"); };
