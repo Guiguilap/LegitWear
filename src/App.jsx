@@ -1230,6 +1230,35 @@ if (currentUserId) {
     thumb: images[0]?.url,
   });
 }
+      if (currentUserId) {
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('first_scan_done, referred_by')
+    .eq('id', currentUserId)
+    .single();
+
+  if (profile && !profile.first_scan_done) {
+    await supabase
+      .from('profiles')
+      .update({ first_scan_done: true, scans_bonus: 2 })
+      .eq('id', currentUserId);
+
+    if (profile.referred_by) {
+      const { data: referrer } = await supabase
+        .from('profiles')
+        .select('id, scans_bonus')
+        .eq('referral_code', profile.referred_by)
+        .single();
+
+      if (referrer) {
+        await supabase
+          .from('profiles')
+          .update({ scans_bonus: (referrer.scans_bonus || 0) + 2 })
+          .eq('id', referrer.id);
+      }
+    }
+  }
+}
 addHistory(userEmail, { ...res, date: new Date().toISOString(), thumb: images[0]?.url });
     } catch(e) {
       setError("Erreur lors de l'analyse. Vérifiez votre connexion et votre solde API.");
