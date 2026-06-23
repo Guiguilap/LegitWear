@@ -1007,14 +1007,14 @@ function ReferralPage({ user, onBack, onSignup, showToast }) {
       <div className="referral-hero">
         <div className="referral-hero-icon">🎁</div>
         <h1>Parraine tes amis,<br />gagne des <em>scans gratuits</em></h1>
-        <p className="referral-hero-sub">Pour chaque ami qui s'inscrit avec ton code, vous gagnez tous les deux 5 scans bonus.</p>
+        <p className="referral-hero-sub">Pour chaque ami qui s'inscrit avec ton code, vous gagnez tous les deux 2 scans bonus.</p>
       </div>
 
       <div className="referral-how">
         {[
           { n:"1", t:"Partage ton code", d:"Envoie ton code unique à tes amis acheteurs ou resellers." },
           { n:"2", t:"Ils s'inscrivent", d:"Ils créent un compte LegitWear avec ton code de parrainage." },
-          { n:"3", t:"Vous gagnez tous les deux", d:"5 scans bonus crédités automatiquement sur vos comptes." },
+          { n:"3", t:"Vous gagnez tous les deux", d:"2 scans bonus crédités automatiquement sur vos comptes." },
         ].map(s => (
           <div className="referral-step" key={s.n}>
             <div className="referral-step-num">{s.n}</div>
@@ -1028,12 +1028,12 @@ function ReferralPage({ user, onBack, onSignup, showToast }) {
 
       <div className="referral-rewards">
         <div className="referral-reward">
-          <div className="referral-reward-count">+5</div>
+          <div className="referral-reward-count">+2</div>
           <div className="referral-reward-label">Scans pour toi</div>
           <div className="referral-reward-desc">Par ami parrainé qui s'inscrit</div>
         </div>
         <div className="referral-reward">
-          <div className="referral-reward-count">+5</div>
+          <div className="referral-reward-count">+2</div>
           <div className="referral-reward-label">Scans pour ton ami</div>
           <div className="referral-reward-desc">Dès son inscription avec ton code</div>
         </div>
