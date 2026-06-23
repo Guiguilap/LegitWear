@@ -38,29 +38,32 @@ export default async function handler(req, res) {
 
   try {
     switch (event.type) {
-      case 'checkout.session.completed': {
-        const session = event.data.object;
-        const customerId = session.customer;
-        const subscriptionId = session.subscription;
-        const email = session.customer_email || session.customer_details?.email;
+   case 'checkout.session.completed': {
+  const session = event.data.object;
+  const customerId = session.customer;
+  const subscriptionId = session.subscription;
+  const email = session.customer_email || session.customer_details?.email;
+  const userId = session.metadata?.userId;
 
-        const subscription = await stripe.subscriptions.retrieve(subscriptionId);
-        const priceId = subscription.items.data[0].price.id;
-        const tier = PRICE_TO_TIER[priceId] || 'free';
+  const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+  const priceId = subscription.items.data[0].price.id;
+  const tier = PRICE_TO_TIER[priceId] || 'free';
 
-        await supabase
-          .from('profiles')
-          .update({
-            subscription_tier: tier,
-            stripe_customer_id: customerId,
-            stripe_subscription_id: subscriptionId,
-            subscription_status: subscription.status,
-          })
-          .eq('email', email);
+  const updateData = {
+    subscription_tier: tier,
+    stripe_customer_id: customerId,
+    stripe_subscription_id: subscriptionId,
+    subscription_status: subscription.status,
+  };
 
-        break;
-      }
+  if (userId) {
+    await supabase.from('profiles').update(updateData).eq('id', userId);
+  } else {
+    await supabase.from('profiles').update(updateData).eq('email', email);
+  }
 
+  break;
+}
       case 'customer.subscription.updated': {
         const subscription = event.data.object;
         const priceId = subscription.items.data[0].price.id;
