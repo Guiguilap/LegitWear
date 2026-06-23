@@ -1106,9 +1106,11 @@ function ReferralPage({ user, onBack, onSignup, showToast }) {
           <div style={{fontSize:11,color:"var(--ink-faint)",textAlign:"center",fontWeight:300,lineHeight:1.7}}>
             Les scans bonus sont crédités dès que ton filleul effectue son premier scan.<br/>
             Valable uniquement pour les nouveaux comptes.
-          </div>
-        </>
-      ) : (
+        </div>
+      </>
+      )
+    ) : (
+      <div className="referral-need-account">
         <div className="referral-need-account">
           <div className="referral-need-account-title">Crée un compte pour parrainer</div>
           <div className="referral-need-account-sub">Tu dois être connecté pour accéder à ton code de parrainage personnel.</div>
