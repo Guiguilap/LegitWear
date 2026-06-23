@@ -1285,7 +1285,43 @@ addHistory(userEmail, { ...res, date: new Date().toISOString(), thumb: images[0]
 }
 
 function HistoryTab({ userEmail, onView }) {
-  const history = getHistory(userEmail);
+  const [history, setHistory] = useState(null);
+
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      const { data: { session: authSession } } = await supabase.auth.getSession();
+      const userId = authSession?.user?.id;
+      if (!userId) { if (active) setHistory(getHistory(userEmail)); return; }
+
+      const { data, error } = await supabase
+        .from('scan_history')
+        .select('*')
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false })
+        .limit(50);
+
+      if (!active) return;
+      if (error || !data) {
+        setHistory(getHistory(userEmail));
+      } else {
+        setHistory(data.map(row => ({
+          verdict: row.verdict,
+          score: row.score,
+          brand: row.brand,
+          product_type: row.product_type,
+          thumb: row.thumb,
+          date: row.created_at,
+        })));
+      }
+    })();
+    return () => { active = false; };
+  }, [userEmail]);
+
+  if (history === null) {
+    return <div className="history-empty">Chargement...</div>;
+  }
+
   if (!history.length) return (
     <div className="history-empty">
       <div className="history-empty-title">Aucune analyse pour l'instant</div>
