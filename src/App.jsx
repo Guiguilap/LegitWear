@@ -1349,8 +1349,14 @@ function HistoryTab({ userEmail, onView }) {
 function Dashboard({ userEmail, onShare, onReferral }) {
   const [tab, setTab] = useState("scan");
   const [modal, setModal] = useState(null);
-  const users = getUsers();
-  const name = users[userEmail]?.name || "vous";
+const [name, setName] = useState("vous");
+useEffect(() => {
+  (async () => {
+    const { data: { session: authSession } } = await supabase.auth.getSession();
+    const metaName = authSession?.user?.user_metadata?.name;
+    setName(metaName || userEmail?.split("@")[0] || "vous");
+  })();
+}, [userEmail]);
   return (
     <div className="dashboard">
       <div className="dash-header">
