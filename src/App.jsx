@@ -984,8 +984,38 @@ function ContactPage({ onBack }) {
 
 // ─── PARRAINAGE ───────────────────────────────────────────────────────────────
 function ReferralPage({ user, onBack, onSignup, showToast }) {
-  const code = user ? getReferralCode(user) : null;
-  const stats = user ? getReferralStats(user) : null;
+  const [code, setCode] = useState(null);
+  const [stats, setStats] = useState(null);
+
+  useEffect(() => {
+    if (!user) { setCode(null); setStats(null); return; }
+    (async () => {
+      const { data: { session: authSession } } = await supabase.auth.getSession();
+      const userId = authSession?.user?.id;
+      if (!userId) return;
+
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('referral_code, scans_bonus')
+        .eq('id', userId)
+        .single();
+
+      if (profile) {
+        setCode(profile.referral_code);
+
+        const { count } = await supabase
+          .from('profiles')
+          .select('id', { count: 'exact', head: true })
+          .eq('referred_by', profile.referral_code);
+
+        setStats({
+          invited: count || 0,
+          joined: count || 0,
+          scansEarned: profile.scans_bonus || 0,
+        });
+      }
+    })();
+  }, [user]);
   const [copied, setCopied] = useState(false);
   const url = typeof window !== "undefined" ? window.location.href.split("?")[0] + "?ref=" + code : "";
 
