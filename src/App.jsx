@@ -1214,7 +1214,22 @@ function ScanTab({ userEmail }) {
     try {
       const res = await scanProduct(images, desc);
       setResult(res);
-      addHistory(userEmail, { ...res, date: new Date().toISOString(), thumb: images[0]?.url });
+   const { data: { session: authSession } } = await supabase.auth.getSession();
+const currentUserId = authSession?.user?.id;
+if (currentUserId) {
+  await supabase.from('scan_history').insert({
+    user_id: currentUserId,
+    verdict: res.verdict,
+    score: res.score,
+    brand: res.brand,
+    product_type: res.product_type,
+    summary: res.summary,
+    issues: res.issues,
+    advice: res.advice,
+    thumb: images[0]?.url,
+  });
+}
+addHistory(userEmail, { ...res, date: new Date().toISOString(), thumb: images[0]?.url });
     } catch(e) {
       setError("Erreur lors de l'analyse. Vérifiez votre connexion et votre solde API.");
     }
