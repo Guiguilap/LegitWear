@@ -1115,7 +1115,7 @@ function ReferralPage({ user, onBack, onSignup, showToast }) {
   </div>
 )}
 
-          <div className="referral-box">
+         <div className="referral-box">
             <div className="referral-box-title">Ton code de parrainage</div>
             <div className="referral-code-wrap">
               <div className="referral-code">{code}</div>
@@ -1128,24 +1128,22 @@ function ReferralPage({ user, onBack, onSignup, showToast }) {
               <button className="referral-share-btn" onClick={() => share("twitter")}>𝕏 Twitter</button>
             </div>
           </div>
-
           <div style={{fontSize:11,color:"var(--ink-faint)",textAlign:"center",fontWeight:300,lineHeight:1.7}}>
             Les scans bonus sont crédités dès que ton filleul effectue son premier scan.<br/>
             Valable uniquement pour les nouveaux comptes.
-        </div>
-     </>
-    )
-  ) : (
-    <div className="referral-need-account">
-          <div className="referral-need-account-title">Crée un compte pour parrainer</div>
-          <div className="referral-need-account-sub">Tu dois être connecté pour accéder à ton code de parrainage personnel.</div>
-          <button className="btn btn-primary btn-lg" onClick={onSignup}>Créer un compte gratuit</button>
-        </div>
-      )}
-    </div>
+          </div>
+        </>
+      )
+    ) : (
+      <div className="referral-need-account">
+        <div className="referral-need-account-title">Crée un compte pour parrainer</div>
+        <div className="referral-need-account-sub">Tu dois être connecté pour accéder à ton code de parrainage personnel.</div>
+        <button className="btn btn-primary btn-lg" onClick={onSignup}>Créer un compte gratuit</button>
+      </div>
+    )}
+  </div>
   );
 }
-
 // ─── AUTH ─────────────────────────────────────────────────────────────────────
 function AuthPage({ mode, onSuccess, onToggle, onBack }) {
   const [email, setEmail] = useState("");
