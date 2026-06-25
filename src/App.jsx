@@ -1069,25 +1069,51 @@ function ReferralPage({ user, onBack, onSignup, showToast }) {
         </div>
       </div>
 
-     {user ? (
+    {user ? (
   !stats ? (
     <div style={{textAlign:"center", padding:"24px"}}>Chargement...</div>
   ) : (
-  <>
-    <div className="referral-stats">
-            <div className="referral-stat">
-              <div className="referral-stat-val">{stats.invited}</div>
-              <div className="referral-stat-label">Invités</div>
-            </div>
-            <div className="referral-stat">
-              <div className="referral-stat-val">{stats.joined}</div>
-              <div className="referral-stat-label">Inscrits</div>
-            </div>
-            <div className="referral-stat">
-              <div className="referral-stat-val">{stats.scansEarned}</div>
-              <div className="referral-stat-label">Scans gagnés</div>
-            </div>
-          </div>
+    <>
+      <div className="referral-stats">
+        <div className="referral-stat">
+          <div className="referral-stat-val">{stats.invited}</div>
+          <div className="referral-stat-label">Invités</div>
+        </div>
+        <div className="referral-stat">
+          <div className="referral-stat-val">{stats.joined}</div>
+          <div className="referral-stat-label">Inscrits</div>
+        </div>
+        <div className="referral-stat">
+          <div className="referral-stat-val">{stats.scansEarned}</div>
+          <div className="referral-stat-label">Scans gagnés</div>
+        </div>
+      </div>
+      <div className="referral-box">
+        <div className="referral-box-title">Ton code de parrainage</div>
+        <div className="referral-code-wrap">
+          <div className="referral-code">{code}</div>
+          <button className={"referral-copy-btn" + (copied ? " copied" : "")} onClick={copy}>
+            {copied ? "Copié ✓" : "Copier"}
+          </button>
+        </div>
+        <div className="referral-share-btns">
+          <button className="referral-share-btn" onClick={() => share("whatsapp")}>💬 WhatsApp</button>
+          <button className="referral-share-btn" onClick={() => share("twitter")}>𝕏 Twitter</button>
+        </div>
+      </div>
+      <div style={{fontSize:11,color:"var(--ink-faint)",textAlign:"center",fontWeight:300,lineHeight:1.7}}>
+        Les scans bonus sont crédités dès que ton filleul effectue son premier scan.<br/>
+        Valable uniquement pour les nouveaux comptes.
+      </div>
+    </>
+  )
+) : (
+  <div className="referral-need-account">
+    <div className="referral-need-account-title">Crée un compte pour parrainer</div>
+    <div className="referral-need-account-sub">Tu dois être connecté pour accéder à ton code de parrainage personnel.</div>
+    <button className="btn btn-primary btn-lg" onClick={onSignup}>Créer un compte gratuit</button>
+  </div>
+)}
 
           <div className="referral-box">
             <div className="referral-box-title">Ton code de parrainage</div>
