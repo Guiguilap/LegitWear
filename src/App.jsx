@@ -21,7 +21,7 @@ const STYLES = `
     --shadow-lg:0 8px 32px rgba(26,24,20,0.10);
   }
   html{scroll-behavior:smooth;font-size:14px}
-  body{background:var(--cream);color:var(--ink);font-family:'Space Grotesk',sans-serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  body{background:var(--cream);color:var(--ink);font-family:'Space Grotesk',sans-serif;font-weight:300;overflow:visible;-webkit-font-smoothing:antialiased}
   ::-webkit-scrollbar{width:3px}
   ::-webkit-scrollbar-track{background:var(--cream)}
   ::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
