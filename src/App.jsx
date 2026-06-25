@@ -123,7 +123,7 @@ const STYLES = `
   .community-cta span{color:var(--ink);border-bottom:1px solid var(--border);cursor:pointer}
 
   .pricing-section{padding:64px 24px;background:var(--cream)}
-  .pricing-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.pricing-grid{display:grid;grid-template-columns:1fr;gap:14px;padding-top:14px}
   .pricing-card{border:1px solid var(--border);border-radius:6px;padding:24px 20px;background:var(--cream);position:relative;transition:all 0.3s;overflow:hidden}
   .pricing-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
   .pricing-card.bronze{border-color:#A0714A;background:linear-gradient(160deg,#1C1410 0%,#120E0A 100%);color:var(--cream)}
