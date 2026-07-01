@@ -141,7 +141,7 @@ const STYLES = `
   .pricing-card.gold .pricing-plan{color:#C9A84C}
   .pricing-card.gold .pricing-desc{color:rgba(247,244,239,0.5)}
   .pricing-card.gold .pricing-feature{color:rgba(247,244,239,0.85);border-bottom-color:rgba(201,168,76,0.12)}
- .pricing-badge{position:absolute;top:-7px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:3px 10px;border-radius:20px;font-family:'Space Grotesk',sans-serif}
+ .pricing-badge{position:absolute;top:-3px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:3px 10px;border-radius:20px;font-family:'Space Grotesk',sans-serif}
   .pricing-badge.silver-b{background:linear-gradient(135deg,#8E9BAE,#C0D0E0);color:#0D0F11}
   .pricing-badge.gold-b{background:linear-gradient(135deg,#C9A84C,#E8C96A);color:#0F0E0B}
   .pricing-lock{font-size:16px;margin-bottom:12px}
