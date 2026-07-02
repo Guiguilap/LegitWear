@@ -582,8 +582,8 @@ function Navbar({ user, onLogin, onSignup, onLogout, onDashboard, onHome, onShar
           </div>
         ) : (
           <>
-            <button className="btn btn-ghost" onClick={onLogin}>Connexion</button>
-            <button className="btn btn-primary" onClick={onSignup}>Commencer</button>
+            <button className="btn btn-ghost" onClick={onLogin} style={{fontSize:10,padding:"7px 10px"}}>Connexion</button>
+            <button className="btn btn-primary" onClick={onSignup} style={{fontSize:10,padding:"7px 12px"}}>Commencer</button>
           </>
         )}
       </div>
