@@ -323,7 +323,6 @@ footer_legal_text: { fr: "LegitWear est un outil d'aide à la décision basé su
 };
 
 function translate(lang, key) {
-function translate(lang, key) {
   const entry = TRANSLATIONS[key];
   if (!entry) return key;
   return entry[lang] || entry.fr || key;
