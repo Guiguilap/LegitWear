@@ -146,8 +146,46 @@ const TRANSLATIONS = {
   footer_cgu: { fr: "CGU", en: "Terms" },
   footer_copyright: { fr: "© 2026 LegitWear — Service indicatif", en: "© 2026 LegitWear — Informational service" },
   footer_legal_title: { fr: "Mentions légales :", en: "Legal notice:" },
-  footer_legal_text: { fr: "LegitWear est un outil d'aide à la décision basé sur l'intelligence artificielle. Les résultats fournis sont indicatifs et non contractuels. En aucun cas LegitWear ou son créateur ne pourra être tenu responsable des décisions d'achat ou de vente prises sur la base des analyses fournies. Cet outil ne remplace pas l'expertise d'un professionnel certifié. LegitWear n'est affilié à aucune marque mentionnée. Toutes les marques citées appartiennent à leurs propriétaires respectifs.", en: "LegitWear is a decision-support tool based on artificial intelligence. The results provided are indicative and non-contractual. Under no circumstances can LegitWear or its creator be held liable for purchase or sale decisions made based on the analyses provided. This tool does not replace the expertise of a certified professional. LegitWear is not affiliated with any brand mentioned. All brands mentioned belong to their respective owners." },
-};
+ function ShareModal({ onClose }) {
+  const { t } = useLang();
+  const url = typeof window !== "undefined" ? window.location.href : "https://legitwear.app";
+  const [copied, setCopied] = useState(false);
+  const copy = () => {
+    navigator.clipboard.writeText(url).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); });
+  };
+  const share = method => {
+    const text = "LegitWear — Détecte les contrefaçons en secondes grâce à l'IA";
+    const eu = encodeURIComponent(url);
+    const et = encodeURIComponent(text);
+    if (method === "twitter") window.open("https://twitter.com/intent/tweet?text=" + et + "&url=" + eu, "_blank");
+    if (method === "whatsapp") window.open("https://wa.me/?text=" + et + "%20" + eu, "_blank");
+    if (method === "native" && navigator.share) navigator.share({ title: "LegitWear", text, url });
+    if (method === "sms") window.open("sms:?body=" + et + "%20" + eu);
+  };
+  return (
+    <div className="overlay" onClick={onClose}>
+      <div className="modal" style={{maxWidth:400}} onClick={e => e.stopPropagation()}>
+        <div className="modal-head">
+          <div className="modal-head-title">{t("share_title")}</div>
+          <button className="modal-close" onClick={onClose}>×</button>
+        </div>
+        <div className="modal-body">
+          <p style={{fontSize:13,color:"var(--ink-soft)",marginBottom:18,fontWeight:300,lineHeight:1.6}}>{t("share_desc")}</p>
+          <div className="share-url-box">
+            <div className="share-url">{url}</div>
+            <button className={"share-copy-btn" + (copied ? " copied" : "")} onClick={copy}>{copied ? t("share_copied") : t("share_copy")}</button>
+          </div>
+          <div className="share-methods">
+            <button className="share-method" onClick={() => share("whatsapp")}><span className="share-method-icon">💬</span>{t("share_whatsapp")}</button>
+            <button className="share-method" onClick={() => share("twitter")}><span className="share-method-icon">𝕏</span>{t("share_twitter")}</button>
+            <button className="share-method" onClick={() => share("sms")}><span className="share-method-icon">📱</span>{t("share_sms")}</button>
+            <button className="share-method" onClick={() => share("native")}><span className="share-method-icon">⬆️</span>{t("share_native")}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 function translate(lang, key) {
   const entry = TRANSLATIONS[key];
   if (!entry) return key;
