@@ -146,46 +146,97 @@ const TRANSLATIONS = {
   footer_cgu: { fr: "CGU", en: "Terms" },
   footer_copyright: { fr: "© 2026 LegitWear — Service indicatif", en: "© 2026 LegitWear — Informational service" },
   footer_legal_title: { fr: "Mentions légales :", en: "Legal notice:" },
- function ShareModal({ onClose }) {
-  const { t } = useLang();
-  const url = typeof window !== "undefined" ? window.location.href : "https://legitwear.app";
-  const [copied, setCopied] = useState(false);
-  const copy = () => {
-    navigator.clipboard.writeText(url).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); });
-  };
-  const share = method => {
-    const text = "LegitWear — Détecte les contrefaçons en secondes grâce à l'IA";
-    const eu = encodeURIComponent(url);
-    const et = encodeURIComponent(text);
-    if (method === "twitter") window.open("https://twitter.com/intent/tweet?text=" + et + "&url=" + eu, "_blank");
-    if (method === "whatsapp") window.open("https://wa.me/?text=" + et + "%20" + eu, "_blank");
-    if (method === "native" && navigator.share) navigator.share({ title: "LegitWear", text, url });
-    if (method === "sms") window.open("sms:?body=" + et + "%20" + eu);
-  };
-  return (
-    <div className="overlay" onClick={onClose}>
-      <div className="modal" style={{maxWidth:400}} onClick={e => e.stopPropagation()}>
-        <div className="modal-head">
-          <div className="modal-head-title">{t("share_title")}</div>
-          <button className="modal-close" onClick={onClose}>×</button>
-        </div>
-        <div className="modal-body">
-          <p style={{fontSize:13,color:"var(--ink-soft)",marginBottom:18,fontWeight:300,lineHeight:1.6}}>{t("share_desc")}</p>
-          <div className="share-url-box">
-            <div className="share-url">{url}</div>
-            <button className={"share-copy-btn" + (copied ? " copied" : "")} onClick={copy}>{copied ? t("share_copied") : t("share_copy")}</button>
-          </div>
-          <div className="share-methods">
-            <button className="share-method" onClick={() => share("whatsapp")}><span className="share-method-icon">💬</span>{t("share_whatsapp")}</button>
-            <button className="share-method" onClick={() => share("twitter")}><span className="share-method-icon">𝕏</span>{t("share_twitter")}</button>
-            <button className="share-method" onClick={() => share("sms")}><span className="share-method-icon">📱</span>{t("share_sms")}</button>
-            <button className="share-method" onClick={() => share("native")}><span className="share-method-icon">⬆️</span>{t("share_native")}</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+ footer_legal_text: { fr: "LegitWear est un outil d'aide à la décision basé sur l'intelligence artificielle. Les résultats fournis sont indicatifs et non contractuels. En aucun cas LegitWear ou son créateur ne pourra être tenu responsable des décisions d'achat ou de vente prises sur la base des analyses fournies. Cet outil ne remplace pas l'expertise d'un professionnel certifié. LegitWear n'est affilié à aucune marque mentionnée. Toutes les marques citées appartiennent à leurs propriétaires respectifs.", en: "LegitWear is a decision-support tool based on artificial intelligence. The results provided are indicative and non-contractual. Under no circumstances can LegitWear or its creator be held liable for purchase or sale decisions made based on the analyses provided. This tool does not replace the expertise of a certified professional. LegitWear is not affiliated with any brand mentioned. All brands mentioned belong to their respective owners." },
+
+  back_btn: { fr: "← Retour", en: "← Back" },
+
+  how_eyebrow: { fr: "Guide d'utilisation", en: "User guide" },
+  how_title_pre: { fr: "Comment ça", en: "How does" },
+  how_title_em: { fr: "marche", en: "it work" },
+  how_title_post: { fr: " ?", en: "?" },
+  how_sub: { fr: "LegitWear utilise l'intelligence artificielle pour analyser vos articles en quelques secondes. Voici comment obtenir le meilleur résultat.", en: "LegitWear uses artificial intelligence to analyze your items in seconds. Here's how to get the best result." },
+  step1_t: { fr: "Créez votre compte", en: "Create your account" },
+  step1_d: { fr: "Gratuit, sans carte bancaire. Votre compte vous permet d'accéder à l'analyse IA et de conserver votre historique de scans.", en: "Free, no credit card required. Your account gives you access to AI analysis and keeps your scan history." },
+  step1_tip1: { fr: "Choisissez un email valide pour recevoir vos rapports", en: "Choose a valid email to receive your reports" },
+  step1_tip2: { fr: "L'inscription prend moins de 30 secondes", en: "Sign-up takes less than 30 seconds" },
+  step2_t: { fr: "Photographiez l'article", en: "Photograph the item" },
+  step2_d: { fr: "La qualité des photos est la clé. Plus elles sont nettes et détaillées, plus le verdict sera précis.", en: "Photo quality is key. The sharper and more detailed they are, the more precise the verdict." },
+  step2_tip1: { fr: "Photographiez sur fond neutre (blanc ou gris)", en: "Photograph on a neutral background (white or gray)" },
+  step2_tip2: { fr: "Utilisez la lumière naturelle de préférence", en: "Use natural light when possible" },
+  step2_tip3: { fr: "Cadrez serré sur les éléments clés", en: "Frame tightly on key elements" },
+  step2_tip4: { fr: "Évitez les photos filtrées ou retouchées", en: "Avoid filtered or edited photos" },
+  step3_t: { fr: "Uploadez jusqu'à 6 photos", en: "Upload up to 6 photos" },
+  step3_d: { fr: "Ajoutez les zones les plus importantes : logo, coutures, étiquettes, semelle, packaging. Plus vous ajoutez de photos, plus l'analyse est complète.", en: "Add the most important areas: logo, stitching, tags, sole, packaging. The more photos you add, the more complete the analysis." },
+  step3_tip1: { fr: "Logo : zoom maximum sur la typographie", en: "Logo: zoom in as much as possible on the typography" },
+  step3_tip2: { fr: "Étiquette : intérieure et extérieure", en: "Tag: inside and outside" },
+  step3_tip3: { fr: "Coutures : propreté et régularité", en: "Stitching: cleanliness and regularity" },
+  step3_tip4: { fr: "Semelle : textures et inscriptions", en: "Sole: textures and markings" },
+  step4_t: { fr: "Obtenez votre verdict", en: "Get your verdict" },
+  step4_d: { fr: "En moins de 10 secondes, l'IA analyse chaque zone et vous retourne un verdict détaillé avec score de confiance et explications point par point.", en: "In under 10 seconds, the AI analyzes each area and returns a detailed verdict with a confidence score and point-by-point explanations." },
+  step4_tip1: { fr: "Score > 85% : haute confiance", en: "Score > 85%: high confidence" },
+  step4_tip2: { fr: "Score 60-85% : résultat probable", en: "Score 60-85%: likely result" },
+  step4_tip3: { fr: "Score < 60% : consultez un expert", en: "Score < 60%: consult an expert" },
+  how_zones_title: { fr: "Les zones analysées par l'IA", en: "The areas analyzed by the AI" },
+  zone1_name: { fr: "Logo & typographie", en: "Logo & typography" },
+  zone1_desc: { fr: "Police, espacement, couleurs, proportions", en: "Font, spacing, colors, proportions" },
+  zone2_name: { fr: "Coutures", en: "Stitching" },
+  zone2_desc: { fr: "Régularité, couleur du fil, finition", en: "Regularity, thread color, finish" },
+  zone3_name: { fr: "Étiquettes", en: "Tags" },
+  zone3_desc: { fr: "Texte, matières, code-barres, positionnement", en: "Text, materials, barcode, positioning" },
+  zone4_name: { fr: "Semelle", en: "Sole" },
+  zone4_desc: { fr: "Texture, inscriptions, qualité du moulage", en: "Texture, markings, molding quality" },
+  zone5_name: { fr: "Matières", en: "Materials" },
+  zone5_desc: { fr: "Qualité du tissu, grammage, rendu visuel", en: "Fabric quality, weight, visual finish" },
+  zone6_name: { fr: "Packaging", en: "Packaging" },
+  zone6_desc: { fr: "Boîte, papiers de soie, accessoires inclus", en: "Box, tissue paper, included accessories" },
+  zone7_name: { fr: "Fermetures", en: "Fasteners" },
+  zone7_desc: { fr: "Zips, boutons, rivets et leur qualité", en: "Zippers, buttons, rivets and their quality" },
+  zone8_name: { fr: "Proportions", en: "Proportions" },
+  zone8_desc: { fr: "Dimensions générales et symétrie", en: "Overall dimensions and symmetry" },
+  how_faq_title: { fr: "Questions fréquentes", en: "Frequently asked questions" },
+  faq1_q: { fr: "LegitWear peut-il se tromper ?", en: "Can LegitWear be wrong?" },
+  faq1_a: { fr: "Oui. L'IA est très précise mais non infaillible. Le score de confiance indique le niveau de certitude. En cas de doute (score < 70%), consultez un expert physique.", en: "Yes. The AI is very precise but not infallible. The confidence score indicates the level of certainty. If in doubt (score < 70%), consult a physical expert." },
+  faq2_q: { fr: "Quelles photos envoyer pour un meilleur résultat ?", en: "Which photos should I send for the best result?" },
+  faq2_a: { fr: "Logo en gros plan, couture interne, étiquette de taille, semelle (pour les sneakers), packaging si disponible. Évitez les photos floues ou trop sombres.", en: "Close-up of the logo, inner stitching, size tag, sole (for sneakers), packaging if available. Avoid blurry or overly dark photos." },
+  faq3_q: { fr: "Mes photos sont-elles conservées ?", en: "Are my photos kept?" },
+  faq3_a: { fr: "Non. Les photos sont analysées en temps réel et ne sont pas stockées sur nos serveurs. Seul le résultat de l'analyse est sauvegardé dans votre historique.", en: "No. Photos are analyzed in real time and are not stored on our servers. Only the analysis result is saved in your history." },
+  faq4_q: { fr: "Combien de temps prend une analyse ?", en: "How long does an analysis take?" },
+  faq4_a: { fr: "Moins de 10 secondes en général. Le temps peut varier selon la qualité des photos et la complexité de l'article.", en: "Under 10 seconds on average. The time may vary depending on photo quality and item complexity." },
+  faq5_q: { fr: "LegitWear fonctionne pour toutes les marques ?", en: "Does LegitWear work for all brands?" },
+  faq5_a: { fr: "Oui, l'IA analyse tout type de vêtement ou accessoire. Les marques streetwear et luxe les plus connues donnent les meilleurs résultats car notre base de données en contient davantage.", en: "Yes, the AI analyzes any type of clothing or accessory. The best-known streetwear and luxury brands give the best results since our database contains more of them." },
+  how_cta: { fr: "Lancer ma première analyse", en: "Start my first analysis" },
+
+  contact_title: { fr: "Nous contacter", en: "Contact us" },
+  contact_sub: { fr: "Une question, un problème ou une suggestion ? On vous répond dans les 24h.", en: "A question, an issue, or a suggestion? We'll get back to you within 24h." },
+  contact_email_label: { fr: "Email", en: "Email" },
+  contact_delay_label: { fr: "Délai de réponse", en: "Response time" },
+  contact_delay_val: { fr: "Sous 24h ouvrées", en: "Within 24 business hours" },
+  contact_success: { fr: "✓ Message envoyé ! On vous répondra dans les 24h à l'adresse indiquée.", en: "✓ Message sent! We'll reply within 24h at the address provided." },
+  contact_form_title: { fr: "Envoyer un message", en: "Send a message" },
+  contact_label_email: { fr: "Votre email", en: "Your email" },
+  contact_label_subject: { fr: "Sujet", en: "Subject" },
+  contact_subject_placeholder: { fr: "Choisir un sujet…", en: "Choose a subject…" },
+  contact_subject_bug: { fr: "Problème technique / bug", en: "Technical issue / bug" },
+  contact_subject_scan: { fr: "Question sur une analyse", en: "Question about an analysis" },
+  contact_subject_billing: { fr: "Abonnement / facturation", en: "Subscription / billing" },
+  contact_subject_suggestion: { fr: "Suggestion d'amélioration", en: "Improvement suggestion" },
+  contact_subject_other: { fr: "Autre", en: "Other" },
+  contact_label_message: { fr: "Message", en: "Message" },
+  contact_message_placeholder: { fr: "Décrivez votre demande en détail…", en: "Describe your request in detail…" },
+  contact_send: { fr: "Envoyer le message", en: "Send message" },
+  contact_disclaimer: { fr: "En envoyant ce message, vous acceptez notre politique de confidentialité.", en: "By sending this message, you agree to our privacy policy." },
+
+  share_title: { fr: "Partager LegitWear", en: "Share LegitWear" },
+  share_desc: { fr: "Partage LegitWear avec tes amis resellers et acheteurs.", en: "Share LegitWear with your reseller and buyer friends." },
+  share_copy: { fr: "Copier", en: "Copy" },
+  share_copied: { fr: "Copié ✓", en: "Copied ✓" },
+  share_whatsapp: { fr: "WhatsApp", en: "WhatsApp" },
+  share_twitter: { fr: "Twitter", en: "Twitter" },
+  share_sms: { fr: "SMS", en: "SMS" },
+  share_native: { fr: "Partager", en: "Share" },
+};
+
+function translate(lang, key) {
 function translate(lang, key) {
   const entry = TRANSLATIONS[key];
   if (!entry) return key;
