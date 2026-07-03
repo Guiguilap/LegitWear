@@ -1766,7 +1766,7 @@ const handleCheckout = async plan => {
   };
 
   return (
-    <>
+   <LangContext.Provider value={{ lang, setLang, t }}>
       <style>{STYLES}</style>
       <Navbar {...navProps} />
       {page === "landing" && <Landing onLogin={() => goAuth("login")} onSignup={() => goAuth("signup")} onShare={() => setShowShare(true)} onCheckout={handleCheckout} onCGU={() => setPage("cgu")} onHow={() => setPage("how")} onContact={() => setPage("contact")} />}
@@ -1778,6 +1778,6 @@ const handleCheckout = async plan => {
      {page === "success" && <SuccessPage onDashboard={() => { setPage("dashboard"); }} />} {page === "cgu" && <CGUPage onBack={onHome} />}
       {showShare && <ShareModal onClose={() => setShowShare(false)} />}
       <div className={"toast" + (toastVisible ? " show" : "")}>{toast}</div>
-    </>
+ </LangContext.Provider>
   );
 }
