@@ -1157,6 +1157,7 @@ function HowPage({ onBack, onSignup }) {
 }
 // ─── CONTACT ─────────────────────────────────────────────────────────────────
 function ContactPage({ onBack }) {
+  const { t } = useLang();
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
@@ -1167,54 +1168,54 @@ function ContactPage({ onBack }) {
   };
   return (
     <div className="contact-page">
-      <button className="back-btn" onClick={onBack}>← Retour</button>
-      <div className="cgu-title">Nous contacter</div>
-      <div className="contact-sub">Une question, un problème ou une suggestion ? On vous répond dans les 24h.</div>
+      <button className="back-btn" onClick={onBack}>{t("back_btn")}</button>
+      <div className="cgu-title">{t("contact_title")}</div>
+      <div className="contact-sub">{t("contact_sub")}</div>
 
       <div className="contact-methods">
         <div className="contact-method">
           <div className="contact-method-icon">✉️</div>
-          <div className="contact-method-label">Email</div>
+          <div className="contact-method-label">{t("contact_email_label")}</div>
         <div className="contact-method-val">legitwear.contact1@gmail.com</div>
         </div>
         <div className="contact-method">
           <div className="contact-method-icon">⏱</div>
-          <div className="contact-method-label">Délai de réponse</div>
-          <div className="contact-method-val">Sous 24h ouvrées</div>
+          <div className="contact-method-label">{t("contact_delay_label")}</div>
+          <div className="contact-method-val">{t("contact_delay_val")}</div>
         </div>
       </div>
 
       {sent ? (
         <div className="contact-success">
-          ✓ Message envoyé ! On vous répondra dans les 24h à l'adresse indiquée.
+          {t("contact_success")}
         </div>
       ) : (
         <>
-          <div className="contact-form-title">Envoyer un message</div>
+          <div className="contact-form-title">{t("contact_form_title")}</div>
           <div className="field">
-            <label>Votre email</label>
+            <label>{t("contact_label_email")}</label>
             <input type="email" placeholder="vous@email.com" value={email} onChange={e => setEmail(e.target.value)} />
           </div>
           <div className="field">
-            <label>Sujet</label>
+            <label>{t("contact_label_subject")}</label>
             <select className="contact-select" value={subject} onChange={e => setSubject(e.target.value)}>
-              <option value="">Choisir un sujet…</option>
-              <option value="bug">Problème technique / bug</option>
-              <option value="scan">Question sur une analyse</option>
-              <option value="billing">Abonnement / facturation</option>
-              <option value="suggestion">Suggestion d'amélioration</option>
-              <option value="other">Autre</option>
+              <option value="">{t("contact_subject_placeholder")}</option>
+              <option value="bug">{t("contact_subject_bug")}</option>
+              <option value="scan">{t("contact_subject_scan")}</option>
+              <option value="billing">{t("contact_subject_billing")}</option>
+              <option value="suggestion">{t("contact_subject_suggestion")}</option>
+              <option value="other">{t("contact_subject_other")}</option>
             </select>
           </div>
           <div className="field">
-            <label>Message</label>
-            <textarea placeholder="Décrivez votre demande en détail…" value={message} onChange={e => setMessage(e.target.value)} style={{minHeight:120}} />
+            <label>{t("contact_label_message")}</label>
+            <textarea placeholder={t("contact_message_placeholder")} value={message} onChange={e => setMessage(e.target.value)} style={{minHeight:120}} />
           </div>
           <button className="btn btn-primary btn-lg" style={{width:"100%"}} onClick={send} disabled={!email || !message}>
-            Envoyer le message
+            {t("contact_send")}
           </button>
           <div style={{fontSize:11,color:"var(--ink-faint)",marginTop:12,textAlign:"center",fontWeight:300}}>
-            En envoyant ce message, vous acceptez notre politique de confidentialité.
+            {t("contact_disclaimer")}
           </div>
         </>
       )}
