@@ -445,7 +445,11 @@ const clearSession = () => localStorage.removeItem("lw_session");
 const getHistory = email => (getUsers()[email]?.history || []);
 const addHistory = (email, item) => {
   const u = getUsers();
-  if (!u[email]) return;
+if (!userId) {
+  setCode("—");
+  setStats({ invited: 0, joined: 0, scansEarned: 0 });
+  return;
+}
   u[email].history = [item, ...(u[email].history || [])].slice(0, 50);
   saveUsers(u);
 };
