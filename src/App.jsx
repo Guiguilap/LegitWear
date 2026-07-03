@@ -148,8 +148,6 @@ const TRANSLATIONS = {
   footer_legal_title: { fr: "Mentions légales :", en: "Legal notice:" },
   footer_legal_text: { fr: "LegitWear est un outil d'aide à la décision basé sur l'intelligence artificielle. Les résultats fournis sont indicatifs et non contractuels. En aucun cas LegitWear ou son créateur ne pourra être tenu responsable des décisions d'achat ou de vente prises sur la base des analyses fournies. Cet outil ne remplace pas l'expertise d'un professionnel certifié. LegitWear n'est affilié à aucune marque mentionnée. Toutes les marques citées appartiennent à leurs propriétaires respectifs.", en: "LegitWear is a decision-support tool based on artificial intelligence. The results provided are indicative and non-contractual. Under no circumstances can LegitWear or its creator be held liable for purchase or sale decisions made based on the analyses provided. This tool does not replace the expertise of a certified professional. LegitWear is not affiliated with any brand mentioned. All brands mentioned belong to their respective owners." },
 };
-};
-
 function translate(lang, key) {
   const entry = TRANSLATIONS[key];
   if (!entry) return key;
