@@ -1667,6 +1667,7 @@ useEffect(() => {
 }
 
 function ShareModal({ onClose }) {
+  const { t } = useLang();
   const url = typeof window !== "undefined" ? window.location.href : "https://legitwear.app";
   const [copied, setCopied] = useState(false);
   const copy = () => {
@@ -1685,27 +1686,26 @@ function ShareModal({ onClose }) {
     <div className="overlay" onClick={onClose}>
       <div className="modal" style={{maxWidth:400}} onClick={e => e.stopPropagation()}>
         <div className="modal-head">
-          <div className="modal-head-title">Partager LegitWear</div>
+          <div className="modal-head-title">{t("share_title")}</div>
           <button className="modal-close" onClick={onClose}>×</button>
         </div>
         <div className="modal-body">
-          <p style={{fontSize:13,color:"var(--ink-soft)",marginBottom:18,fontWeight:300,lineHeight:1.6}}>Partage LegitWear avec tes amis resellers et acheteurs.</p>
+          <p style={{fontSize:13,color:"var(--ink-soft)",marginBottom:18,fontWeight:300,lineHeight:1.6}}>{t("share_desc")}</p>
           <div className="share-url-box">
             <div className="share-url">{url}</div>
-            <button className={"share-copy-btn" + (copied ? " copied" : "")} onClick={copy}>{copied ? "Copié ✓" : "Copier"}</button>
+            <button className={"share-copy-btn" + (copied ? " copied" : "")} onClick={copy}>{copied ? t("share_copied") : t("share_copy")}</button>
           </div>
           <div className="share-methods">
-            <button className="share-method" onClick={() => share("whatsapp")}><span className="share-method-icon">💬</span>WhatsApp</button>
-            <button className="share-method" onClick={() => share("twitter")}><span className="share-method-icon">𝕏</span>Twitter</button>
-            <button className="share-method" onClick={() => share("sms")}><span className="share-method-icon">📱</span>SMS</button>
-            <button className="share-method" onClick={() => share("native")}><span className="share-method-icon">⬆️</span>Partager</button>
+            <button className="share-method" onClick={() => share("whatsapp")}><span className="share-method-icon">💬</span>{t("share_whatsapp")}</button>
+            <button className="share-method" onClick={() => share("twitter")}><span className="share-method-icon">𝕏</span>{t("share_twitter")}</button>
+            <button className="share-method" onClick={() => share("sms")}><span className="share-method-icon">📱</span>{t("share_sms")}</button>
+            <button className="share-method" onClick={() => share("native")}><span className="share-method-icon">⬆️</span>{t("share_native")}</button>
           </div>
         </div>
       </div>
     </div>
   );
 }
-
 function CGUPage({ onBack }) {
   return (
     <div className="cgu-page">
