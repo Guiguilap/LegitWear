@@ -1705,6 +1705,9 @@ export default function App() {
   const [authMode, setAuthMode] = useState("login");
   const [user, setUser] = useState(getSession);
   const [showShare, setShowShare] = useState(false);const [showSuccess, setShowSuccess] = useState(false);
+  const [lang, setLang] = useState(() => (typeof window !== "undefined" && localStorage.getItem("lw_lang")) || "fr");
+useEffect(() => { if (typeof window !== "undefined") localStorage.setItem("lw_lang", lang); }, [lang]);
+const t = key => translate(lang, key);
   const [toast, setToast] = useState("");
   const [toastVisible, setToastVisible] = useState(false);
   useEffect(() => {
