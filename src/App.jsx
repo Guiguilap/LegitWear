@@ -1076,49 +1076,38 @@ function Landing({ onLogin, onSignup, onShare, onCheckout, onCGU, onHow, onConta
 
 // ─── HOW IT WORKS ─────────────────────────────────────────────────────────────
 function HowPage({ onBack, onSignup }) {
+  const { t } = useLang();
   const [openFaq, setOpenFaq] = useState(null);
   const faqs = [
-    { q:"LegitWear peut-il se tromper ?", a:"Oui. L'IA est très précise mais non infaillible. Le score de confiance indique le niveau de certitude. En cas de doute (score < 70%), consultez un expert physique." },
-    { q:"Quelles photos envoyer pour un meilleur résultat ?", a:"Logo en gros plan, couture interne, étiquette de taille, semelle (pour les sneakers), packaging si disponible. Évitez les photos floues ou trop sombres." },
-    { q:"Mes photos sont-elles conservées ?", a:"Non. Les photos sont analysées en temps réel et ne sont pas stockées sur nos serveurs. Seul le résultat de l'analyse est sauvegardé dans votre historique." },
-    { q:"Combien de temps prend une analyse ?", a:"Moins de 10 secondes en général. Le temps peut varier selon la qualité des photos et la complexité de l'article." },
-    { q:"LegitWear fonctionne pour toutes les marques ?", a:"Oui, l'IA analyse tout type de vêtement ou accessoire. Les marques streetwear et luxe les plus connues donnent les meilleurs résultats car notre base de données en contient davantage." },
+    { qk:"faq1_q", ak:"faq1_a" },
+    { qk:"faq2_q", ak:"faq2_a" },
+    { qk:"faq3_q", ak:"faq3_a" },
+    { qk:"faq4_q", ak:"faq4_a" },
+    { qk:"faq5_q", ak:"faq5_a" },
   ];
   return (
     <div className="how-page">
-      <button className="back-btn" onClick={onBack}>← Retour</button>
+      <button className="back-btn" onClick={onBack}>{t("back_btn")}</button>
       <div className="how-hero">
-        <div className="how-hero-eyebrow">Guide d'utilisation</div>
-        <h1>Comment ça<br /><em>marche</em> ?</h1>
-        <p className="how-hero-sub">LegitWear utilise l'intelligence artificielle pour analyser vos articles en quelques secondes. Voici comment obtenir le meilleur résultat.</p>
+        <div className="how-hero-eyebrow">{t("how_eyebrow")}</div>
+        <h1>{t("how_title_pre")}<br /><em>{t("how_title_em")}</em>{t("how_title_post")}</h1>
+        <p className="how-hero-sub">{t("how_sub")}</p>
       </div>
 
       <div className="how-steps">
         {[
-          {
-            n:"01", t:"Créez votre compte", d:"Gratuit, sans carte bancaire. Votre compte vous permet d'accéder à l'analyse IA et de conserver votre historique de scans.",
-            tips:["Choisissez un email valide pour recevoir vos rapports","L'inscription prend moins de 30 secondes"]
-          },
-          {
-            n:"02", t:"Photographiez l'article", d:"La qualité des photos est la clé. Plus elles sont nettes et détaillées, plus le verdict sera précis.",
-            tips:["Photographiez sur fond neutre (blanc ou gris)","Utilisez la lumière naturelle de préférence","Cadrez serré sur les éléments clés","Évitez les photos filtrées ou retouchées"]
-          },
-          {
-            n:"03", t:"Uploadez jusqu'à 6 photos", d:"Ajoutez les zones les plus importantes : logo, coutures, étiquettes, semelle, packaging. Plus vous ajoutez de photos, plus l'analyse est complète.",
-            tips:["Logo : zoom maximum sur la typographie","Étiquette : intérieure et extérieure","Coutures : propreté et régularité","Semelle : textures et inscriptions"]
-          },
-          {
-            n:"04", t:"Obtenez votre verdict", d:"En moins de 10 secondes, l'IA analyse chaque zone et vous retourne un verdict détaillé avec score de confiance et explications point par point.",
-            tips:["Score > 85% : haute confiance","Score 60-85% : résultat probable","Score < 60% : consultez un expert"]
-          },
+          { n:"01", tk:"step1_t", dk:"step1_d", tips:["step1_tip1","step1_tip2"] },
+          { n:"02", tk:"step2_t", dk:"step2_d", tips:["step2_tip1","step2_tip2","step2_tip3","step2_tip4"] },
+          { n:"03", tk:"step3_t", dk:"step3_d", tips:["step3_tip1","step3_tip2","step3_tip3","step3_tip4"] },
+          { n:"04", tk:"step4_t", dk:"step4_d", tips:["step4_tip1","step4_tip2","step4_tip3"] },
         ].map(s => (
           <div className="how-step" key={s.n}>
             <div className="how-step-num">{s.n}</div>
             <div className="how-step-body">
-              <div className="how-step-title">{s.t}</div>
-              <div className="how-step-desc">{s.d}</div>
+              <div className="how-step-title">{t(s.tk)}</div>
+              <div className="how-step-desc">{t(s.dk)}</div>
               <div className="how-step-tips">
-                {s.tips.map((tip, i) => <div className="how-step-tip" key={i}>{tip}</div>)}
+                {s.tips.map((tipKey, i) => <div className="how-step-tip" key={i}>{t(tipKey)}</div>)}
               </div>
             </div>
           </div>
@@ -1126,47 +1115,46 @@ function HowPage({ onBack, onSignup }) {
       </div>
 
       <div className="how-zones">
-        <div className="how-zones-title">Les zones analysées par l'IA</div>
+        <div className="how-zones-title">{t("how_zones_title")}</div>
         <div className="how-zones-grid">
           {[
-            { icon:"🔤", name:"Logo & typographie", desc:"Police, espacement, couleurs, proportions" },
-            { icon:"🧵", name:"Coutures", desc:"Régularité, couleur du fil, finition" },
-            { icon:"🏷", name:"Étiquettes", desc:"Texte, matières, code-barres, positionnement" },
-            { icon:"👟", name:"Semelle", desc:"Texture, inscriptions, qualité du moulage" },
-            { icon:"🎨", name:"Matières", desc:"Qualité du tissu, grammage, rendu visuel" },
-            { icon:"📦", name:"Packaging", desc:"Boîte, papiers de soie, accessoires inclus" },
-            { icon:"🔩", name:"Fermetures", desc:"Zips, boutons, rivets et leur qualité" },
-            { icon:"📐", name:"Proportions", desc:"Dimensions générales et symétrie" },
+            { icon:"🔤", nk:"zone1_name", dk:"zone1_desc" },
+            { icon:"🧵", nk:"zone2_name", dk:"zone2_desc" },
+            { icon:"🏷", nk:"zone3_name", dk:"zone3_desc" },
+            { icon:"👟", nk:"zone4_name", dk:"zone4_desc" },
+            { icon:"🎨", nk:"zone5_name", dk:"zone5_desc" },
+            { icon:"📦", nk:"zone6_name", dk:"zone6_desc" },
+            { icon:"🔩", nk:"zone7_name", dk:"zone7_desc" },
+            { icon:"📐", nk:"zone8_name", dk:"zone8_desc" },
           ].map((z, i) => (
             <div className="how-zone-card" key={i}>
               <div className="how-zone-icon">{z.icon}</div>
-              <div className="how-zone-name">{z.name}</div>
-              <div className="how-zone-desc">{z.desc}</div>
+              <div className="how-zone-name">{t(z.nk)}</div>
+              <div className="how-zone-desc">{t(z.dk)}</div>
             </div>
           ))}
         </div>
       </div>
 
       <div className="how-faq">
-        <div className="how-faq-title">Questions fréquentes</div>
+        <div className="how-faq-title">{t("how_faq_title")}</div>
         {faqs.map((f, i) => (
           <div className="how-faq-item" key={i} onClick={() => setOpenFaq(openFaq === i ? null : i)}>
             <div className="how-faq-q">
-              {f.q}
+              {t(f.qk)}
               <span className={"how-faq-chevron" + (openFaq === i ? " open" : "")}>▼</span>
             </div>
-            {openFaq === i && <div className="how-faq-a">{f.a}</div>}
+            {openFaq === i && <div className="how-faq-a">{t(f.ak)}</div>}
           </div>
         ))}
       </div>
 
       <div style={{textAlign:"center",paddingTop:16}}>
-        <button className="btn btn-primary btn-lg" onClick={onSignup}>Lancer ma première analyse</button>
+        <button className="btn btn-primary btn-lg" onClick={onSignup}>{t("how_cta")}</button>
       </div>
     </div>
   );
 }
-
 // ─── CONTACT ─────────────────────────────────────────────────────────────────
 function ContactPage({ onBack }) {
   const [subject, setSubject] = useState("");
