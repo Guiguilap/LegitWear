@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, createContext, useContext } from "react";
 import { supabase } from "./supabase.js";
 import antiArnaqueImg from './assets/anti-arnaque.svg';
 import toutesMarquesImg from './assets/toutes-marques.svg';
@@ -7,7 +7,30 @@ import historiqueImg from './assets/historique-personnel.svg';
 import resultatImg from './assets/resultat-express.svg';
 import rapportImg from './assets/rapport-pdf.svg';
 
+// ─── I18N ────────────────────────────────────────────────────────────────────
+export const LangContext = createContext({ lang: "fr", setLang: () => {}, t: (k) => k });
+export function useLang() { return useContext(LangContext); }
 
+const TRANSLATIONS = {
+  nav_home: { fr: "Accueil", en: "Home" },
+  nav_how: { fr: "Comment ça marche", en: "How it works" },
+  nav_contact: { fr: "Contact", en: "Contact" },
+  nav_share: { fr: "Partager", en: "Share" },
+  nav_login: { fr: "Connexion", en: "Log in" },
+  nav_signup: { fr: "Commencer", en: "Get started" },
+  nav_dashboard: { fr: "🔍 Mon espace", en: "🔍 My space" },
+  nav_referral: { fr: "🎁 Parrainer un ami", en: "🎁 Refer a friend" },
+  nav_billing: { fr: "💳 Mon abonnement", en: "💳 My subscription" },
+  nav_share2: { fr: "🔗 Partager", en: "🔗 Share" },
+  nav_switch: { fr: "↔️ Changer de compte", en: "↔️ Switch account" },
+  nav_logout: { fr: "→ Se déconnecter", en: "→ Log out" },
+};
+
+function translate(lang, key) {
+  const entry = TRANSLATIONS[key];
+  if (!entry) return key;
+  return entry[lang] || entry.fr || key;
+}
 const STYLES = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap');
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -31,7 +54,12 @@ const STYLES = `
   .nav-center{display:none;gap:28px}
   .nav-link{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);cursor:pointer;transition:color 0.2s;font-weight:400}
   .nav-link:hover{color:var(--ink)}
-  .nav-actions{display:flex;gap:8px;align-items:center}
+.nav-actions{display:flex;gap:8px;align-items:center}
+  .lang-toggle{display:flex;align-items:center;background:var(--cream2);border:1px solid var(--border);border-radius:20px;padding:2px;position:relative;cursor:pointer;font-family:'Space Grotesk',sans-serif;user-select:none}
+  .lang-toggle-thumb{position:absolute;top:2px;left:2px;bottom:2px;width:calc(50% - 2px);background:var(--ink);border-radius:18px;transition:transform 0.25s cubic-bezier(0.4,0,0.2,1);z-index:1}
+  .lang-toggle-thumb.en{transform:translateX(100%)}
+  .lang-toggle-option{position:relative;z-index:2;padding:5px 11px;font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--ink-faint);transition:color 0.25s}
+  .lang-toggle-option.active{color:var(--cream)}
 
   .btn{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:9px 20px;border-radius:2px;cursor:pointer;border:none;transition:all 0.25s;white-space:nowrap}
   .btn-ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--border)}
@@ -538,6 +566,7 @@ function exportPDF(result) {
 
 // ─── NAVBAR ──────────────────────────────────────────────────────────────────
 function Navbar({ user, onLogin, onSignup, onLogout, onDashboard, onHome, onShare, onSwitchAccount, onHow, onContact, onReferral }) {
+  const { t } = useLang();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef();
   useEffect(() => {
@@ -552,12 +581,13 @@ function Navbar({ user, onLogin, onSignup, onLogout, onDashboard, onHome, onShar
     <nav className="nav">
       <div className="nav-logo" onClick={onHome}>LegitWear</div>
       <div className="nav-center">
-        <span className="nav-link" onClick={onHome}>Accueil</span>
-        <span className="nav-link" onClick={onHow}>Comment ça marche</span>
-        <span className="nav-link" onClick={onContact}>Contact</span>
-        <span className="nav-link" onClick={onShare}>Partager</span>
+        <span className="nav-link" onClick={onHome}>{t("nav_home")}</span>
+        <span className="nav-link" onClick={onHow}>{t("nav_how")}</span>
+        <span className="nav-link" onClick={onContact}>{t("nav_contact")}</span>
+        <span className="nav-link" onClick={onShare}>{t("nav_share")}</span>
       </div>
       <div className="nav-actions">
+        <LangToggle />
         {user ? (
           <div className="account-menu-wrap" ref={menuRef}>
             <button className="account-btn" onClick={() => setMenuOpen(o => !o)}>
@@ -571,19 +601,20 @@ function Navbar({ user, onLogin, onSignup, onLogout, onDashboard, onHome, onShar
                   <div className="dropdown-name">{name}</div>
                   <div className="dropdown-email">{user}</div>
                 </div>
-                <button className="dropdown-item" onClick={() => { setMenuOpen(false); onDashboard(); }}>🔍 Mon espace</button>
-                <button className="dropdown-item" onClick={() => { setMenuOpen(false); onReferral(); }}>🎁 Parrainer un ami</button>
-             <div className="tab" onClick={() => window.open("https://billing.stripe.com/p/login/28E14pdqs72o3IPdOieAg00", "_blank")}>💳 Mon abonnement</div>  <button className="dropdown-item" onClick={() => { setMenuOpen(false); onShare(); }}>🔗 Partager</button>
+                <button className="dropdown-item" onClick={() => { setMenuOpen(false); onDashboard(); }}>{t("nav_dashboard")}</button>
+                <button className="dropdown-item" onClick={() => { setMenuOpen(false); onReferral(); }}>{t("nav_referral")}</button>
+                <div className="tab" onClick={() => window.open("https://billing.stripe.com/p/login/28E14pdqs72o3IPdOieAg00", "_blank")}>{t("nav_billing")}</div>
+                <button className="dropdown-item" onClick={() => { setMenuOpen(false); onShare(); }}>{t("nav_share2")}</button>
                 <div className="dropdown-sep" />
-                <button className="dropdown-item" onClick={() => { setMenuOpen(false); onSwitchAccount(); }}>↔️ Changer de compte</button>
-                <button className="dropdown-item danger" onClick={() => { setMenuOpen(false); onLogout(); }}>→ Se déconnecter</button>
+                <button className="dropdown-item" onClick={() => { setMenuOpen(false); onSwitchAccount(); }}>{t("nav_switch")}</button>
+                <button className="dropdown-item danger" onClick={() => { setMenuOpen(false); onLogout(); }}>{t("nav_logout")}</button>
               </div>
             )}
           </div>
         ) : (
           <>
-        <button className="btn btn-ghost" onClick={onLogin} style={{fontSize:10,padding:"6px 10px",letterSpacing:"0.08em"}}>Connexion</button>
-<button className="btn btn-primary" onClick={onSignup} style={{fontSize:10,padding:"6px 10px",letterSpacing:"0.08em"}}>Commencer</button>
+            <button className="btn btn-ghost" onClick={onLogin} style={{fontSize:10,padding:"6px 10px",letterSpacing:"0.08em"}}>{t("nav_login")}</button>
+            <button className="btn btn-primary" onClick={onSignup} style={{fontSize:10,padding:"6px 10px",letterSpacing:"0.08em"}}>{t("nav_signup")}</button>
           </>
         )}
       </div>
@@ -591,6 +622,16 @@ function Navbar({ user, onLogin, onSignup, onLogout, onDashboard, onHome, onShar
   );
 }
 
+function LangToggle() {
+  const { lang, setLang } = useLang();
+  return (
+    <div className="lang-toggle" onClick={() => setLang(l => (l === "fr" ? "en" : "fr"))} role="button" aria-label="Changer de langue / Switch language">
+      <div className={"lang-toggle-thumb" + (lang === "en" ? " en" : "")} />
+      <div className={"lang-toggle-option" + (lang === "fr" ? " active" : "")}>FR</div>
+      <div className={"lang-toggle-option" + (lang === "en" ? " active" : "")}>EN</div>
+    </div>
+  );
+}
 // ─── LANDING ─────────────────────────────────────────────────────────────────
 const BRANDS = ["Nike","Adidas","Supreme","Stone Island","Off-White","Balenciaga","Louis Vuitton","Gucci","Jordan","Palace","Carhartt WIP","Stüssy","Moncler","The North Face","Arc'teryx","Ami Paris","Bottega Veneta","Prada"];
 
