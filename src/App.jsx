@@ -758,8 +758,8 @@ function LangToggle() {
 }
 // ─── LANDING ─────────────────────────────────────────────────────────────────
 const BRANDS = ["Nike","Adidas","Supreme","Stone Island","Off-White","Balenciaga","Louis Vuitton","Gucci","Jordan","Palace","Carhartt WIP","Stüssy","Moncler","The North Face","Arc'teryx","Ami Paris","Bottega Veneta","Prada"];
-
 function Landing({ onLogin, onSignup, onShare, onCheckout, onCGU, onHow, onContact }) {
+  const { t } = useLang();
   const marqueeItems = [...BRANDS, ...BRANDS];
   return (
     <>
@@ -767,24 +767,24 @@ function Landing({ onLogin, onSignup, onShare, onCheckout, onCGU, onHow, onConta
         <div className="hero-noise" />
         <div className="hero-glow" />
         <div className="hero-inner">
-          <div className="hero-eyebrow">Authentification par intelligence artificielle</div>
-          <h1>Authentique<br />ou <em>contrefaçon</em> ?<br />La réponse express.</h1>
-          <p className="hero-sub">Uploadez les photos de votre article. Notre IA analyse chaque détail — logo, coutures, étiquettes, matière — et vous rend un verdict clair avec explication.</p>
+          <div className="hero-eyebrow">{t("hero_eyebrow")}</div>
+          <h1>{t("hero_title_1")}<br />{t("hero_title_pre_em")}<em>{t("hero_title_em")}</em>{t("hero_title_post_em")}<br />{t("hero_title_2")}</h1>
+          <p className="hero-sub">{t("hero_sub")}</p>
           <div className="hero-ctas">
-            <button className="btn btn-primary btn-lg" onClick={onSignup}>Lancer une analyse</button>
-            <button className="btn btn-outline btn-lg" onClick={onHow}>Comment ça marche</button>
-            <button className="btn btn-ghost btn-lg" onClick={onLogin}>Se connecter</button>
+            <button className="btn btn-primary btn-lg" onClick={onSignup}>{t("hero_cta_scan")}</button>
+            <button className="btn btn-outline btn-lg" onClick={onHow}>{t("nav_how")}</button>
+            <button className="btn btn-ghost btn-lg" onClick={onLogin}>{t("hero_cta_login")}</button>
           </div>
           <div className="hero-trust">
             <div className="hero-trust-avatars">
               {["KM","SL","TR","AL"].map((i,idx) => <div className="hero-trust-avatar" key={idx}>{i}</div>)}
             </div>
-            <div className="hero-trust-text"><strong>+2 400 articles</strong> analysés ce mois</div>
+            <div className="hero-trust-text"><strong>{t("hero_trust_strong")}</strong> {t("hero_trust_suffix")}</div>
           </div>
         </div>
         <div className="hero-bottom">
-          {[["< 10s","Analyse IA"],["6","Photos max"],["∞","Marques"]].map(([v,l]) => (
-            <div key={l}><div className="stat-val">{v}</div><div className="stat-label">{l}</div></div>
+          {[["< 10s","stat_analysis"],["6","stat_photos"],["∞","stat_brands"]].map(([v,lk]) => (
+            <div key={lk}><div className="stat-val">{v}</div><div className="stat-label">{t(lk)}</div></div>
           ))}
         </div>
       </section>
@@ -798,45 +798,45 @@ function Landing({ onLogin, onSignup, onShare, onCheckout, onCGU, onHow, onConta
       </div>
 
       <section className="section">
-        <div className="section-eyebrow">Processus</div>
-        <div className="section-title">Simple,<br /><em>rapide</em>, fiable.</div>
+        <div className="section-eyebrow">{t("eyebrow_process")}</div>
+        <div className="section-title">{t("process_title_pre")}<br /><em>{t("process_title_em")}</em>{t("process_title_post")}</div>
         <div className="process-list">
           {[
-            { n:"01", t:"Photographiez l'article", d:"3 à 6 photos : logo, couture, étiquette, semelle. Plus les détails sont nets, plus l'analyse est précise." },
-            { n:"02", t:"L'IA analyse tout", d:"Notre IA examine chaque pixel : typographie, alignements, qualité de finition, cohérence des matières." },
-            { n:"03", t:"Verdict et explication", d:"Authentique, contrefaçon ou incertain — avec un score de confiance et le détail de chaque indice analysé." },
+            { n:"01", tk:"process1_t", dk:"process1_d" },
+            { n:"02", tk:"process2_t", dk:"process2_d" },
+            { n:"03", tk:"process3_t", dk:"process3_d" },
           ].map(s => (
             <div className="process-item" key={s.n}>
               <div className="process-num">{s.n}</div>
-              <div><div className="process-title">{s.t}</div><div className="process-desc">{s.d}</div></div>
+              <div><div className="process-title">{t(s.tk)}</div><div className="process-desc">{t(s.dk)}</div></div>
             </div>
           ))}
         </div>
         <div style={{marginTop:28}}>
-          <button className="btn btn-outline" onClick={onHow}>En savoir plus →</button>
+          <button className="btn btn-outline" onClick={onHow}>{t("learn_more")}</button>
         </div>
       </section>
 
       <div className="divider" />
 
       <section className="section" style={{background:"var(--cream2)"}}>
-        <div className="section-eyebrow">Fonctionnalités</div>
-        <div className="section-title">Conçu pour les<br /><em>vrais acheteurs.</em></div>
+        <div className="section-eyebrow">{t("eyebrow_features")}</div>
+        <div className="section-title">{t("features_title_pre")}<br /><em>{t("features_title_em")}</em></div>
         <div className="photo-features">
           {[
-{ img: antiArnaqueImg, icon:"🛡", t:"Anti-arnaque", d:"Évitez les fakes sur Vinted, Vestiaire Collective, eBay ou Leboncoin avant d'acheter." },
-{ img: indicesImg, icon:"🔍", t:"Indices détaillés", d:"Chaque point analysé est expliqué — vous comprenez pourquoi, pas juste ce que." },
-{ img: resultatImg, icon:"⚡", t:"Résultat express", d:"Moins de 10 secondes pour un verdict complet, 24h/24." },
-{ img: toutesMarquesImg, icon:"🧠", t:"Toutes les marques", d:"Streetwear, luxe, sneakers — Nike, Jordan, LV, Gucci, Supreme, Stone Island..." },
-{ img: historiqueImg, icon:"📁", t:"Historique personnel", d:"Retrouvez tous vos scans passés, organisés et consultables à tout moment." },
-{ img: rapportImg, icon:"📄", t:"Rapport PDF", d:"Exportez un rapport complet après chaque scan — idéal pour les pros." },
+            { img: antiArnaqueImg, icon:"🛡", tk:"feat1_t", dk:"feat1_d" },
+            { img: indicesImg, icon:"🔍", tk:"feat2_t", dk:"feat2_d" },
+            { img: resultatImg, icon:"⚡", tk:"feat3_t", dk:"feat3_d" },
+            { img: toutesMarquesImg, icon:"🧠", tk:"feat4_t", dk:"feat4_d" },
+            { img: historiqueImg, icon:"📁", tk:"feat5_t", dk:"feat5_d" },
+            { img: rapportImg, icon:"📄", tk:"feat6_t", dk:"feat6_d" },
           ].map(f => (
-            <div className="photo-feat" key={f.t}>
-              <img className="photo-feat-img" src={f.img} alt={f.t} loading="lazy" />
+            <div className="photo-feat" key={f.tk}>
+              <img className="photo-feat-img" src={f.img} alt={t(f.tk)} loading="lazy" />
               <div className="photo-feat-body">
                 <div className="photo-feat-icon">{f.icon}</div>
-                <div className="photo-feat-title">{f.t}</div>
-                <div className="photo-feat-desc">{f.d}</div>
+                <div className="photo-feat-title">{t(f.tk)}</div>
+                <div className="photo-feat-desc">{t(f.dk)}</div>
               </div>
             </div>
           ))}
@@ -844,8 +844,8 @@ function Landing({ onLogin, onSignup, onShare, onCheckout, onCGU, onHow, onConta
       </section>
 
       <section className="refdb-section">
-        <div className="section-eyebrow">Base de données</div>
-        <div className="section-title" style={{marginBottom:28}}>Des milliers de<br /><em>références vérifiées.</em></div>
+        <div className="section-eyebrow">{t("eyebrow_refdb")}</div>
+        <div className="section-title" style={{marginBottom:28}}>{t("refdb_title_pre")}<br /><em>{t("refdb_title_em")}</em></div>
         <div className="refdb-grid">
          {[
   { brand:"Nike", type:"Air Jordan 4", tags:["authentic","fake"] },
@@ -862,125 +862,125 @@ function Landing({ onLogin, onSignup, onShare, onCheckout, onCGU, onHow, onConta
       <div className="refdb-brand">{r.brand}</div>
       <div className="refdb-type">{r.type}</div>
       <div className="refdb-tags">
-        {r.tags.includes("authentic") && <span className="refdb-tag authentic">✓ Vrai</span>}
-        {r.tags.includes("fake") && <span className="refdb-tag fake">✗ Fake</span>}
-        {r.tags.includes("locked") && <span className="refdb-tag locked">🔒 Pro</span>}
+        {r.tags.includes("authentic") && <span className="refdb-tag authentic">{t("refdb_real")}</span>}
+        {r.tags.includes("fake") && <span className="refdb-tag fake">{t("refdb_fake")}</span>}
+        {r.tags.includes("locked") && <span className="refdb-tag locked">{t("refdb_pro")}</span>}
       </div>
     </div>
   </div>
 ))}
         </div>
-        <div className="refdb-count">+2 400 références · Mis à jour chaque semaine · Accès complet dès le plan Pro</div>
+        <div className="refdb-count">{t("refdb_count")}</div>
       </section>
 
       <section className="community-section">
-        <div className="section-eyebrow">Communauté</div>
-        <div className="section-title" style={{marginBottom:28}}>L'avis des<br /><em>experts.</em></div>
+        <div className="section-eyebrow">{t("eyebrow_community")}</div>
+        <div className="section-title" style={{marginBottom:28}}>{t("community_title_pre")}<br /><em>{t("community_title_em")}</em></div>
         <div className="expert-grid">
           {[
-            { init:"KM", name:"Karim M.", role:"Reseller — 300+ ventes/an", badge:"Expert vérifié", text:"J'ai évité 3 fakes en une semaine. Le scan sur la couture du logo Supreme était parfait, exactement ce que j'aurais vérifié à la main.", brand:"Spécialiste Supreme & Jordan" },
-            { init:"SL", name:"Sofia L.", role:"Acheteuse Vinted régulière", badge:"Membre Pro", text:"J'ai failli acheter un Stone Island à 180€ qui était faux. LegitWear l'a détecté en 8 secondes grâce au badge mal cousu.", brand:"Streetwear & luxe accessible" },
-            { init:"TR", name:"Thomas R.", role:"Sneaker collector", badge:"Expert vérifié", text:"La précision sur les Air Jordan est bluffante. Il détecte des détails que même les vendeurs ne voient pas.", brand:"Spécialiste Nike & Adidas" },
-            { init:"AL", name:"Aya L.", role:"Personal shopper", badge:"Membre Premium", text:"Je l'utilise pour mes clients avant chaque achat. Le rapport PDF que j'envoie avec mes recommandations, c'est un vrai plus pro.", brand:"Luxe & streetwear haut de gamme" },
+            { init:"KM", name:"Karim M.", rk:"exp1_role", bk:"exp1_badge", tk:"exp1_text", brk:"exp1_brand" },
+            { init:"SL", name:"Sofia L.", rk:"exp2_role", bk:"exp2_badge", tk:"exp2_text", brk:"exp2_brand" },
+            { init:"TR", name:"Thomas R.", rk:"exp3_role", bk:"exp3_badge", tk:"exp3_text", brk:"exp3_brand" },
+            { init:"AL", name:"Aya L.", rk:"exp4_role", bk:"exp4_badge", tk:"exp4_text", brk:"exp4_brand" },
           ].map((e, i) => (
             <div className="expert-card" key={i}>
               <div className="expert-header">
                 <div className="expert-avatar">{e.init}</div>
-                <div><div className="expert-name">{e.name}</div><div className="expert-role">{e.role}</div></div>
-                <div className="expert-badge">{e.badge}</div>
+                <div><div className="expert-name">{e.name}</div><div className="expert-role">{t(e.rk)}</div></div>
+                <div className="expert-badge">{t(e.bk)}</div>
               </div>
-              <div className="expert-text">"{e.text}"</div>
-              <div className="expert-brand">{e.brand}</div>
+              <div className="expert-text">"{t(e.tk)}"</div>
+              <div className="expert-brand">{t(e.brk)}</div>
             </div>
           ))}
         </div>
-        <div className="community-cta">Tu veux rejoindre la communauté ? <span onClick={onSignup}>Créer un compte</span></div>
+        <div className="community-cta">{t("community_cta_pre")}<span onClick={onSignup}>{t("community_cta_link")}</span></div>
       </section>
 
       <section className="pricing-section">
-        <div className="section-eyebrow">Tarifs</div>
-        <div className="section-title" style={{marginBottom:36}}>Simple,<br /><em>transparent.</em></div>
+        <div className="section-eyebrow">{t("eyebrow_pricing")}</div>
+        <div className="section-title" style={{marginBottom:36}}>{t("pricing_title_pre")}<br /><em>{t("pricing_title_em")}</em></div>
         <div className="pricing-grid">
           <div className="pricing-card">
             <div className="pricing-lock">🆓</div>
-            <div className="pricing-plan">Gratuit</div>
+            <div className="pricing-plan">{t("plan_free")}</div>
             <div className="pricing-price"><span className="amount">0</span><span className="period"> €/mois</span></div>
-            <div className="pricing-desc">Pour découvrir LegitWear sans engagement.</div>
+            <div className="pricing-desc">{t("price_desc_free")}</div>
             <div className="pricing-features">
-              {[["✓","3 scans par mois"],["✓","Verdict simple"],["✓","1 indice par scan"],["—","Historique"],["—","Rapport PDF"],["—","Indices détaillés"]].map(([ic,tx],i) => (
+              {[["✓","feat_scans3"],["✓","feat_verdict_simple"],["✓","feat_indice1"],["—","feat_history"],["—","feat_pdf"],["—","feat_indices_det"]].map(([ic,tk],i) => (
                 <div className="pricing-feature" key={i} style={{opacity:ic==="—"?0.35:1}}>
-                  <span className="pricing-feature-icon">{ic}</span><span>{tx}</span>
+                  <span className="pricing-feature-icon">{ic}</span><span>{t(tk)}</span>
                 </div>
               ))}
             </div>
-            <button className="pricing-cta light" onClick={onSignup}>Commencer gratuitement</button>
+            <button className="pricing-cta light" onClick={onSignup}>{t("cta_free_start")}</button>
           </div>
           <div className="pricing-card bronze">
             <div className="pricing-lock">🥉</div>
-            <div className="pricing-plan">Starter</div>
+            <div className="pricing-plan">{t("plan_starter")}</div>
             <div className="pricing-price"><span className="amount">9,99</span><span style={{fontSize:16,fontWeight:400,verticalAlign:"super",marginLeft:2}}>€</span><span className="period">/mois</span></div>
-            <div className="pricing-desc">Pour débuter et vérifier tes achats occasionnels.</div>
+            <div className="pricing-desc">{t("price_desc_starter")}</div>
             <div className="pricing-features">
-              {[["✓","20 scans par mois"],["✓","Verdict + score"],["✓","2 indices par scan"],["✓","Historique 30 jours"],["✓","Toutes les marques"],["—","Rapport PDF"]].map(([ic,tx],i) => (
+              {[["✓","feat_scans20"],["✓","feat_verdict_score"],["✓","feat_indice2"],["✓","feat_history30"],["✓","feat_all_brands"],["—","feat_pdf"]].map(([ic,tk],i) => (
                 <div className="pricing-feature" key={i} style={{opacity:ic==="—"?0.35:1}}>
-                  <span className="pricing-feature-icon">{ic}</span><span>{tx}</span>
+                  <span className="pricing-feature-icon">{ic}</span><span>{t(tk)}</span>
                 </div>
               ))}
             </div>
-            <button className="pricing-cta bronze-btn" onClick={() => onCheckout("starter")}>Commencer — 7j offerts</button>
+            <button className="pricing-cta bronze-btn" onClick={() => onCheckout("starter")}>{t("cta_starter")}</button>
           </div>
           <div className="pricing-card silver" style={{position:"relative"}}>
-            <div className="pricing-badge silver-b">Le plus populaire</div>
+            <div className="pricing-badge silver-b">{t("badge_popular")}</div>
             <div className="pricing-lock" style={{marginTop:16}}>🥈</div>
-            <div className="pricing-plan">Pro</div>
+            <div className="pricing-plan">{t("plan_pro")}</div>
             <div className="pricing-price"><span className="amount">14,99</span><span style={{fontSize:16,fontWeight:400,verticalAlign:"super",marginLeft:2}}>€</span><span className="period">/mois</span></div>
-            <div className="pricing-desc">Pour les resellers et acheteurs réguliers.</div>
+            <div className="pricing-desc">{t("price_desc_pro")}</div>
             <div className="pricing-features">
-              {[["✓","Scans illimités"],["✓","Verdict + score"],["✓","Indices complets"],["✓","Historique illimité"],["✓","Rapport PDF"],["—","Accès prioritaire"]].map(([ic,tx],i) => (
+              {[["✓","feat_scans_unlim"],["✓","feat_verdict_score"],["✓","feat_indices_complet"],["✓","feat_history_unlim"],["✓","feat_pdf"],["—","feat_priority"]].map(([ic,tk],i) => (
                 <div className="pricing-feature" key={i} style={{opacity:ic==="—"?0.35:1}}>
-                  <span className="pricing-feature-icon">{ic}</span><span>{tx}</span>
+                  <span className="pricing-feature-icon">{ic}</span><span>{t(tk)}</span>
                 </div>
               ))}
             </div>
-            <button className="pricing-cta silver-btn" onClick={() => onCheckout("pro")}>Choisir Pro — 7j offerts</button>
+            <button className="pricing-cta silver-btn" onClick={() => onCheckout("pro")}>{t("cta_pro")}</button>
           </div>
           <div className="pricing-card gold" style={{position:"relative"}}>
-            <div className="pricing-badge gold-b">✦ Exclusif</div>
+            <div className="pricing-badge gold-b">{t("badge_exclusive")}</div>
             <div className="pricing-lock" style={{marginTop:16}}>👑</div>
-            <div className="pricing-plan">Premium</div>
+            <div className="pricing-plan">{t("plan_premium")}</div>
             <div className="pricing-price"><span className="amount">19,99</span><span style={{fontSize:16,fontWeight:400,verticalAlign:"super",marginLeft:2}}>€</span><span className="period">/mois</span></div>
-            <div className="pricing-desc">L'expérience ultime. Pour ceux qui ne transigent pas.</div>
+            <div className="pricing-desc">{t("price_desc_premium")}</div>
             <div className="pricing-features">
-              {[["✓","Scans illimités"],["✓","Verdict + score"],["✓","Indices complets"],["✓","Historique illimité"],["✓","Rapport PDF"],["✓","Accès prioritaire IA"]].map(([ic,tx],i) => (
+              {[["✓","feat_scans_unlim"],["✓","feat_verdict_score"],["✓","feat_indices_complet"],["✓","feat_history_unlim"],["✓","feat_pdf"],["✓","feat_priority_ai"]].map(([ic,tk],i) => (
                 <div className="pricing-feature" key={i}>
-                  <span className="pricing-feature-icon">{ic}</span><span>{tx}</span>
+                  <span className="pricing-feature-icon">{ic}</span><span>{t(tk)}</span>
                 </div>
               ))}
             </div>
-            <button className="pricing-cta gold-btn" onClick={() => onCheckout("premium")}>Choisir Premium — 7j offerts</button>
+            <button className="pricing-cta gold-btn" onClick={() => onCheckout("premium")}>{t("cta_premium")}</button>
           </div>
         </div>
-        <div className="pricing-free">Essai gratuit 7 jours — <span onClick={onSignup}>commencer sans carte bancaire</span></div>
+        <div className="pricing-free">{t("pricing_free_pre")}<span onClick={onSignup}>{t("pricing_free_link")}</span></div>
       </section>
 
       <section className="cta-section">
-        <h2>Prêt à scanner<br />votre <em>premier article</em> ?</h2>
-        <p>Compte gratuit, résultats instantanés.</p>
-        <button className="btn btn-cream btn-lg" onClick={onSignup}>Créer un compte gratuit</button>
+        <h2>{t("cta_title_pre")}<br />{t("cta_title_mid")}<em>{t("cta_title_em")}</em>{t("cta_title_post")}</h2>
+        <p>{t("cta_sub")}</p>
+        <button className="btn btn-cream btn-lg" onClick={onSignup}>{t("cta_button")}</button>
       </section>
 
       <footer>
         <div className="footer-logo">LegitWear</div>
-        <div className="footer-tagline">La vérité sur ce que tu portes.</div>
+        <div className="footer-tagline">{t("footer_tagline")}</div>
         <div className="footer-links">
-          <span className="footer-link" onClick={() => { window.scrollTo(0,0); }}>Accueil</span>
-          <span className="footer-link" onClick={onHow}>Comment ça marche</span>
-          <span className="footer-link" onClick={onContact}>Contact</span>
-          <span className="footer-link" onClick={onCGU}>CGU</span>
+          <span className="footer-link" onClick={() => { window.scrollTo(0,0); }}>{t("nav_home")}</span>
+          <span className="footer-link" onClick={onHow}>{t("nav_how")}</span>
+          <span className="footer-link" onClick={onContact}>{t("nav_contact")}</span>
+          <span className="footer-link" onClick={onCGU}>{t("footer_cgu")}</span>
         </div>
         <div className="footer-legal">
-          © 2026 LegitWear — Service indicatif<br /><br />
-          <strong style={{color:"rgba(247,244,239,0.45)"}}>Mentions légales :</strong> LegitWear est un outil d'aide à la décision basé sur l'intelligence artificielle. Les résultats fournis sont indicatifs et non contractuels. En aucun cas LegitWear ou son créateur ne pourra être tenu responsable des décisions d'achat ou de vente prises sur la base des analyses fournies. Cet outil ne remplace pas l'expertise d'un professionnel certifié. LegitWear n'est affilié à aucune marque mentionnée. Toutes les marques citées appartiennent à leurs propriétaires respectifs.
+          {t("footer_copyright")}<br /><br />
+          <strong style={{color:"rgba(247,244,239,0.45)"}}>{t("footer_legal_title")}</strong> {t("footer_legal_text")}
         </div>
       </footer>
     </>
