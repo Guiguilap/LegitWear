@@ -1910,17 +1910,16 @@ function SuccessPage({ onDashboard }) {
 }
 const DISPOSABLE_DOMAINS = ["test.com","test.fr","example.com","mailinator.com","yopmail.com","tempmail.com","guerrillamail.com","10minutemail.com","fakeinbox.com","trashmail.com"];
 const FAKE_PATTERNS = ["test","azerty","qwerty","admin","user","abc","azertyuiop","123456","fake","exemple","example","aaa","sample","demo"];
-
 function isValidEmail(email) {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  if (!re.test(email)) return { valid: false, reason: "Format d'email invalide." };
+  if (!re.test(email)) return { valid: false, reasonKey: "err_invalid_email_format" };
   const [localPart, domainFull] = email.toLowerCase().split("@");
   const domain = domainFull;
   const domainName = domain.split(".")[0];
-  if (DISPOSABLE_DOMAINS.includes(domain)) return { valid: false, reason: "Merci d'utiliser une adresse email réelle." };
-  if (/^(.)\1*$/.test(localPart) && localPart.length > 1) return { valid: false, reason: "Adresse email suspecte." };
-  if (FAKE_PATTERNS.includes(localPart) || FAKE_PATTERNS.includes(domainName)) return { valid: false, reason: "Merci d'utiliser une adresse email réelle." };
-  if (localPart === domainName) return { valid: false, reason: "Merci d'utiliser une adresse email réelle." };
+  if (DISPOSABLE_DOMAINS.includes(domain)) return { valid: false, reasonKey: "err_fake_email" };
+  if (/^(.)\1*$/.test(localPart) && localPart.length > 1) return { valid: false, reasonKey: "err_suspicious_email" };
+  if (FAKE_PATTERNS.includes(localPart) || FAKE_PATTERNS.includes(domainName)) return { valid: false, reasonKey: "err_fake_email" };
+  if (localPart === domainName) return { valid: false, reasonKey: "err_fake_email" };
   return { valid: true };
 }
 export default function App() {
