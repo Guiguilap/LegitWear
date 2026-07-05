@@ -1354,6 +1354,7 @@ function ReferralPage({ user, onBack, onSignup, showToast }) {
 }
 // ─── AUTH ─────────────────────────────────────────────────────────────────────
 function AuthPage({ mode, onSuccess, onToggle, onBack }) {
+  const { t } = useLang();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -1361,10 +1362,10 @@ function AuthPage({ mode, onSuccess, onToggle, onBack }) {
   const [loading, setLoading] = useState(false);
   const handle = async () => {
     setError("");
-    if (!email || !password) return setError("Veuillez remplir tous les champs.");
-    if (password.length < 6) return setError("Le mot de passe doit faire au moins 6 caractères.");
+    if (!email || !password) return setError(t("err_fill_fields"));
+    if (password.length < 6) return setError(t("err_password_length"));
     const emailCheck = isValidEmail(email);
-if (!emailCheck.valid) return setError(emailCheck.reason);
+    if (!emailCheck.valid) return setError(t(emailCheck.reasonKey));
    setLoading(true);
 if (mode === "signup") {
 const refCode = typeof window !== "undefined" ? sessionStorage.getItem("lw_ref_code") : null;
@@ -1381,9 +1382,9 @@ const { error: signUpError } = await supabase.auth.signUp({
   const { data, error: signInError } = await supabase.auth.signInWithPassword({ email, password });
 if (signInError) {
   if (signInError.message.toLowerCase().includes("email not confirmed")) {
-    setError("Merci de confirmer ton adresse email avant de te connecter (vérifie ta boîte mail).");
+    setError(t("err_email_confirm"));
   } else {
-    setError("Email ou mot de passe incorrect.");
+    setError(t("err_wrong_credentials"));
   }
   setLoading(false);
   return;
@@ -1396,21 +1397,21 @@ if (signInError) {
   return (
     <div className="auth-page">
       <div className="auth-card">
-        <button className="back-btn" onClick={onBack}>← Retour</button>
+        <button className="back-btn" onClick={onBack}>{t("back_btn")}</button>
         <div className="auth-logo">LegitWear</div>
-        <div className="auth-title">{mode === "signup" ? "Créer un compte" : "Bon retour"}</div>
-        <div className="auth-sub">{mode === "signup" ? "Commencez à authentifier vos articles" : "Connectez-vous pour accéder à votre espace"}</div>
+        <div className="auth-title">{mode === "signup" ? t("auth_title_signup") : t("auth_title_login")}</div>
+        <div className="auth-sub">{mode === "signup" ? t("auth_sub_signup") : t("auth_sub_login")}</div>
         {error && <div className="err">{error}</div>}
         {mode === "signup" && (
-          <div className="field"><label>Prénom ou pseudo</label><input placeholder="Votre nom" value={name} onChange={e => setName(e.target.value)} /></div>
+          <div className="field"><label>{t("auth_label_name")}</label><input placeholder={t("auth_placeholder_name")} value={name} onChange={e => setName(e.target.value)} /></div>
         )}
-        <div className="field"><label>Adresse email</label><input type="email" placeholder="vous@email.com" value={email} onChange={e => setEmail(e.target.value)} /></div>
-        <div className="field" style={{marginBottom:24}}><label>Mot de passe</label><input type="password" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={e => e.key === "Enter" && handle()} /></div>
+        <div className="field"><label>{t("auth_label_email")}</label><input type="email" placeholder="vous@email.com" value={email} onChange={e => setEmail(e.target.value)} /></div>
+        <div className="field" style={{marginBottom:24}}><label>{t("auth_label_password")}</label><input type="password" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={e => e.key === "Enter" && handle()} /></div>
         <button className="btn btn-primary" style={{width:"100%",padding:"12px"}} onClick={handle} disabled={loading}>
-          {loading ? "…" : mode === "signup" ? "Créer mon compte" : "Se connecter"}
+          {loading ? "…" : mode === "signup" ? t("auth_btn_signup") : t("auth_btn_login")}
         </button>
         <div className="auth-switch">
-          {mode === "signup" ? <>Déjà un compte ? <span onClick={onToggle}>Connexion</span></> : <>Pas encore de compte ? <span onClick={onToggle}>S'inscrire</span></>}
+          {mode === "signup" ? <>{t("auth_switch_have_account")}<span onClick={onToggle}>{t("auth_switch_login_link")}</span></> : <>{t("auth_switch_no_account")}<span onClick={onToggle}>{t("auth_switch_signup_link")}</span></>}
         </div>
       </div>
     </div>
