@@ -1592,8 +1592,7 @@ if (currentUserId) {
 }
 addHistory(userEmail, { ...res, date: new Date().toISOString(), thumb: images[0]?.url });
     } catch(e) {
-      setError("Erreur lors de l'analyse. Vérifiez votre connexion et votre solde API.");
-    }
+    setError(t("err_scan_failed"));
     setLoading(false);
   };
   const reset = () => { setImages([]); setDesc(""); setResult(null); setError(""); };
