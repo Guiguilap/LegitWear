@@ -1611,7 +1611,7 @@ addHistory(userEmail, { ...res, date: new Date().toISOString(), thumb: images[0]
   );
   return (
     <div className="scan-card">
-      <div className="scan-label">Nouvelle analyse</div>
+    <div className="scan-label">{t("scan_label")}</div>
     <div className={"upload-zone" + (drag ? " drag" : "")}
   onDragOver={e => { e.preventDefault(); setDrag(true); }}
   onDragLeave={() => setDrag(false)}
