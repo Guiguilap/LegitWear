@@ -1634,8 +1634,8 @@ addHistory(userEmail, { ...res, date: new Date().toISOString(), thumb: images[0]
         </div>
       )}
       <div className="field" style={{marginTop:20}}>
-        <label>Description (optionnel)</label>
-        <textarea placeholder="Ex : Nike Air Force 1 achetée sur Vinted, taille 42, prix 80€…" value={desc} onChange={e => setDesc(e.target.value)} />
+     <label>{t("desc_label")}</label>
+        <textarea placeholder={t("desc_placeholder")} value={desc} onChange={e => setDesc(e.target.value)} />
       </div>
       {error && <div className="err">{error}</div>}
       <button className="btn btn-primary btn-lg" style={{width:"100%",marginTop:16}} onClick={scan} disabled={!images.length}>
