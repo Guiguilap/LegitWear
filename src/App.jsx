@@ -1519,9 +1519,9 @@ function ResultCard({ result }) {
   );
 }
 
-const LOAD_STEPS = ["Chargement des images…","Analyse du logo et typographies…","Vérification coutures et finitions…","Calcul du score de confiance…"];
-
 function ScanTab({ userEmail }) {
+  const { t } = useLang();
+  const LOAD_STEPS = [t("load_step1"), t("load_step2"), t("load_step3"), t("load_step4")];
   const [images, setImages] = useState([]);
   const [desc, setDesc] = useState("");
   const [loading, setLoading] = useState(false);
