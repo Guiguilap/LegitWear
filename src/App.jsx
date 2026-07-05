@@ -258,8 +258,6 @@ share_native: { fr: "Partager", en: "Share" },
   err_fake_email: { fr: "Merci d'utiliser une adresse email réelle.", en: "Please use a real email address." },
   err_suspicious_email: { fr: "Adresse email suspecte.", en: "Suspicious email address." },
 };
-
-function translate(lang, key) {
 function translate(lang, key) {
   const entry = TRANSLATIONS[key];
   if (!entry) return key;
