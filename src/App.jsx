@@ -1541,7 +1541,7 @@ function ScanTab({ userEmail }) {
     setImages(p => [...p, ...converted].slice(0, 6));
   };
   const scan = async () => {
-    if (!images.length) return setError("Ajoutez au moins une photo.");
+   if (!images.length) return setError(t("err_add_photo"));
     setError(""); setResult(null); setLoading(true); setStep(0);
     try {
       const res = await scanProduct(images, desc);
