@@ -233,8 +233,33 @@ footer_legal_text: { fr: "LegitWear est un outil d'aide à la décision basé su
   share_whatsapp: { fr: "WhatsApp", en: "WhatsApp" },
   share_twitter: { fr: "Twitter", en: "Twitter" },
   share_sms: { fr: "SMS", en: "SMS" },
-  share_native: { fr: "Partager", en: "Share" },
+share_native: { fr: "Partager", en: "Share" },
+
+  auth_title_signup: { fr: "Créer un compte", en: "Create an account" },
+  auth_title_login: { fr: "Bon retour", en: "Welcome back" },
+  auth_sub_signup: { fr: "Commencez à authentifier vos articles", en: "Start authenticating your items" },
+  auth_sub_login: { fr: "Connectez-vous pour accéder à votre espace", en: "Log in to access your space" },
+  auth_label_name: { fr: "Prénom ou pseudo", en: "First name or username" },
+  auth_placeholder_name: { fr: "Votre nom", en: "Your name" },
+  auth_label_email: { fr: "Adresse email", en: "Email address" },
+  auth_label_password: { fr: "Mot de passe", en: "Password" },
+  auth_btn_signup: { fr: "Créer mon compte", en: "Create my account" },
+  auth_btn_login: { fr: "Se connecter", en: "Log in" },
+  auth_switch_have_account: { fr: "Déjà un compte ? ", en: "Already have an account? " },
+  auth_switch_login_link: { fr: "Connexion", en: "Log in" },
+  auth_switch_no_account: { fr: "Pas encore de compte ? ", en: "Don't have an account yet? " },
+  auth_switch_signup_link: { fr: "S'inscrire", en: "Sign up" },
+
+  err_fill_fields: { fr: "Veuillez remplir tous les champs.", en: "Please fill in all fields." },
+  err_password_length: { fr: "Le mot de passe doit faire au moins 6 caractères.", en: "Password must be at least 6 characters." },
+  err_email_confirm: { fr: "Merci de confirmer ton adresse email avant de te connecter (vérifie ta boîte mail).", en: "Please confirm your email before logging in (check your inbox)." },
+  err_wrong_credentials: { fr: "Email ou mot de passe incorrect.", en: "Incorrect email or password." },
+  err_invalid_email_format: { fr: "Format d'email invalide.", en: "Invalid email format." },
+  err_fake_email: { fr: "Merci d'utiliser une adresse email réelle.", en: "Please use a real email address." },
+  err_suspicious_email: { fr: "Adresse email suspecte.", en: "Suspicious email address." },
 };
+
+function translate(lang, key) {
 function translate(lang, key) {
   const entry = TRANSLATIONS[key];
   if (!entry) return key;
