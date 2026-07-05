@@ -1639,7 +1639,7 @@ addHistory(userEmail, { ...res, date: new Date().toISOString(), thumb: images[0]
       </div>
       {error && <div className="err">{error}</div>}
       <button className="btn btn-primary btn-lg" style={{width:"100%",marginTop:16}} onClick={scan} disabled={!images.length}>
-        {images.length ? "Analyser — " + images.length + " photo" + (images.length > 1 ? "s" : "") : "Ajoutez des photos"}
+    {images.length ? t("analyze_btn_prefix") + images.length + (images.length > 1 ? t("photo_plural") : t("photo_singular")) : t("add_photos_btn")}
       </button>
     </div>
   );
