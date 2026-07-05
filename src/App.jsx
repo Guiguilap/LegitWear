@@ -1483,8 +1483,9 @@ if (signInError) {
 
 // ─── RESULT ──────────────────────────────────────────────────────────────────
 function ResultCard({ result }) {
+  const { t } = useLang();
   const cls = result.verdict;
-  const label = cls === "authentic" ? "Authentique" : cls === "fake" ? "Contrefaçon" : "Incertain";
+  const label = cls === "authentic" ? t("verdict_authentic") : cls === "fake" ? t("verdict_fake") : t("verdict_uncertain");
   return (
     <div className="result-card">
       <div className={"result-header " + cls}>
@@ -1494,7 +1495,7 @@ function ResultCard({ result }) {
         </div>
         <div className="score-block">
           <div className={"score-num " + cls}>{result.score}</div>
-          <div className="score-pct">% confiance</div>
+          <div className="score-pct">{t("confidence_label")}</div>
         </div>
       </div>
       <div className="result-divider" />
@@ -1502,7 +1503,7 @@ function ResultCard({ result }) {
         <p className="result-summary">{result.summary}</p>
         {result.issues && result.issues.length > 0 && (
           <>
-            <div className="issues-label">Analyse détaillée</div>
+            <div className="issues-label">{t("issues_label")}</div>
             {result.issues.map((issue, i) => (
               <div className="issue-row" key={i}>
                 <div className={"issue-dot " + issue.type} />
@@ -1511,8 +1512,8 @@ function ResultCard({ result }) {
             ))}
           </>
         )}
-        {result.advice && <div className="advice-box"><strong>Conseil :</strong> {result.advice}</div>}
-        <button className="pdf-btn" onClick={() => exportPDF(result)}>↓ Télécharger le rapport PDF</button>
+        {result.advice && <div className="advice-box"><strong>{t("advice_label")}</strong> {result.advice}</div>}
+        <button className="pdf-btn" onClick={() => exportPDF(result)}>{t("pdf_btn")}</button>
       </div>
     </div>
   );
