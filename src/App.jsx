@@ -1346,34 +1346,34 @@ function ReferralPage({ user, onBack, onSignup, showToast }) {
 
   return (
     <div className="referral-page">
-      <button className="back-btn" onClick={onBack} style={{marginBottom:32}}>← Retour</button>
+     <button className="back-btn" onClick={onBack} style={{marginBottom:32}}>{t("back_btn")}</button>
       <div className="referral-hero">
         <div className="referral-hero-icon">🎁</div>
-        <h1>Parraine tes amis,<br />gagne des <em>scans gratuits</em></h1>
-        <p className="referral-hero-sub">Pour chaque ami qui s'inscrit avec ton code, vous gagnez tous les deux 2 scans bonus.</p>
+        <h1>{t("referral_hero_title_pre")}<br />{t("referral_hero_title_mid")}<em>{t("referral_hero_title_em")}</em></h1>
+        <p className="referral-hero-sub">{t("referral_hero_sub")}</p>
       </div>
       <div className="referral-how">
         {[
-          { n:"1", t:"Partage ton code", d:"Envoie ton code unique à tes amis acheteurs ou resellers." },
-          { n:"2", t:"Ils s'inscrivent", d:"Ils créent un compte LegitWear avec ton code de parrainage." },
-          { n:"3", t:"Vous gagnez tous les deux", d:"2 scans bonus crédités automatiquement sur vos comptes." },
+          { n:"1", tk:"referral_step1_t", dk:"referral_step1_d" },
+          { n:"2", tk:"referral_step2_t", dk:"referral_step2_d" },
+          { n:"3", tk:"referral_step3_t", dk:"referral_step3_d" },
         ].map(s => (
           <div className="referral-step" key={s.n}>
             <div className="referral-step-num">{s.n}</div>
-            <div><div className="referral-step-title">{s.t}</div><div className="referral-step-desc">{s.d}</div></div>
+            <div><div className="referral-step-title">{t(s.tk)}</div><div className="referral-step-desc">{t(s.dk)}</div></div>
           </div>
         ))}
       </div>
       <div className="referral-rewards">
         <div className="referral-reward">
           <div className="referral-reward-count">+2</div>
-          <div className="referral-reward-label">Scans pour toi</div>
-          <div className="referral-reward-desc">Par ami parrainé qui s'inscrit</div>
+          <div className="referral-reward-label">{t("referral_reward_for_you")}</div>
+          <div className="referral-reward-desc">{t("referral_reward_for_you_d")}</div>
         </div>
         <div className="referral-reward">
           <div className="referral-reward-count">+2</div>
-          <div className="referral-reward-label">Scans pour ton ami</div>
-          <div className="referral-reward-desc">Dès son inscription avec ton code</div>
+          <div className="referral-reward-label">{t("referral_reward_for_friend")}</div>
+          <div className="referral-reward-desc">{t("referral_reward_for_friend_d")}</div>
         </div>
       </div>
       {user ? (
