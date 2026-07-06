@@ -1521,7 +1521,7 @@ function ResultCard({ result }) {
 }
 
 function ScanTab({ userEmail }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const LOAD_STEPS = [t("load_step1"), t("load_step2"), t("load_step3"), t("load_step4")];
   const [images, setImages] = useState([]);
   const [desc, setDesc] = useState("");
