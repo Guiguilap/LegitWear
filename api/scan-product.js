@@ -3,26 +3,26 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { images, description } = req.body;
-
+ const { images, description, lang } = req.body;
   if (!images || !images.length) {
     return res.status(400).json({ error: 'Images manquantes' });
   }
-
   const imgBlocks = images.map(img => ({
     type: "image",
     source: { type: "base64", media_type: img.type, data: img.data }
   }));
-
+  const responseLangInstruction = lang === "en"
+    ? "Respond in English. All text fields (summary, issues descriptions, advice, brand, product_type) must be written in English."
+    : "Reponds en francais. Tous les champs texte (summary, issues descriptions, advice, brand, product_type) doivent etre rediges en francais.";
   const textPrompt = "Tu es un expert en authentification de vetements streetwear et luxe. "
     + "Analyse ces photos. Description utilisateur: " + (description || "Non fournie") + ". "
+    + responseLangInstruction + " "
     + "Reponds UNIQUEMENT en JSON valide, sans texte avant ou apres, sans markdown. "
     + "Structure exacte: "
     + '{"verdict":"authentic","score":85,"brand":"Nike","product_type":"Sneakers",'
     + '"summary":"Texte ici.","issues":[{"type":"ok","zone":"Logo","description":"Detail"}],'
     + '"advice":"Conseil ici."}'
-    + " Le verdict doit etre: authentic, fake, ou uncertain. Score entre 0 et 100. Analyse 5 zones minimum.";
-
+    + " Le verdict doit etre: authentic, fake, ou uncertain (ces 3 valeurs restent en anglais, ce sont des codes internes). Score entre 0 et 100. Analyse 5 zones minimum.";
   try {
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
