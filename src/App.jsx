@@ -1739,13 +1739,13 @@ useEffect(() => {
         <div className="overlay" onClick={() => setModal(null)}>
           <div className="modal" onClick={e => e.stopPropagation()}>
             <div className="modal-head">
-              <div className="modal-head-title">Résultat de l'analyse</div>
+           <div className="modal-head-title">{t("modal_title")}</div>
               <button className="modal-close" onClick={() => setModal(null)}>×</button>
             </div>
             <div className="modal-body">
               <ResultCard result={modal} />
               <div style={{fontSize:11,color:"var(--ink-faint)",marginTop:10}}>
-                Analysé le {new Date(modal.date).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"})}
+                {t("modal_analyzed_on")}{new Date(modal.date).toLocaleDateString(lang === "en" ? "en-US" : "fr-FR",{day:"numeric",month:"long",year:"numeric"})}
               </div>
             </div>
           </div>
