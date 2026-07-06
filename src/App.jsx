@@ -820,11 +820,11 @@ const getReferralStats = email => {
 };
 
 // ─── API ──────────────────────────────────────────────────────────────────────
-async function scanProduct(images, description) {
+async function scanProduct(images, description, lang) {
   const res = await fetch("/api/scan-product", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ images, description })
+    body: JSON.stringify({ images, description, lang })
   });
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || "Erreur API");
