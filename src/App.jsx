@@ -1645,6 +1645,7 @@ addHistory(userEmail, { ...res, date: new Date().toISOString(), thumb: images[0]
 }
 
 function HistoryTab({ userEmail, onView }) {
+  const { t, lang } = useLang();
   const [history, setHistory] = useState(null);
 
   useEffect(() => {
