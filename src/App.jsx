@@ -851,7 +851,7 @@ const dateStr = new Date().toLocaleDateString(lang === "en" ? "en-US" : "fr-FR",
     + ".advice{background:#EDE9E1;padding:14px 16px;border-radius:3px;font-size:13px;color:#6B6560;line-height:1.7;margin-bottom:24px}"
     + ".footer{padding-top:18px;border-top:1px solid #E0DAD0;font-size:11px;color:#A8A39C}"
     + "</style></head><body>"
-    + "<div class='sub'>Rapport d'authentification — LegitWear</div>"
+   + "<div class='sub'>" + translate(lang, "pdf_report_title") + "</div>"
     + "<div class='brand'>" + result.brand + " — " + result.product_type + "</div>"
     + "<div class='verdict'>" + label + "</div><br/>"
     + "<div class='score'>" + result.score + "<span style='font-size:16px'>%</span></div>"
