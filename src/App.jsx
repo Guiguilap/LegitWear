@@ -831,8 +831,8 @@ async function scanProduct(images, description) {
   return data;
 }
 
-function exportPDF(result) {
-  const label = result.verdict === "authentic" ? "AUTHENTIQUE" : result.verdict === "fake" ? "CONTREFAÇON" : "INCERTAIN";
+function exportPDF(result, lang = "fr") {
+  const label = (result.verdict === "authentic" ? translate(lang, "verdict_authentic") : result.verdict === "fake" ? translate(lang, "verdict_fake") : translate(lang, "verdict_uncertain")).toUpperCase();
   const color = result.verdict === "authentic" ? "#3D7A5C" : result.verdict === "fake" ? "#9B3A3A" : "#8B6F2E";
   const issueRows = (result.issues || []).map(function(i) {
     return "<tr><td style='padding:8px 12px;border-bottom:1px solid #f0ede8;font-size:12px;color:#6B6560;text-transform:uppercase;width:100px'>"
