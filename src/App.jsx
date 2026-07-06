@@ -1545,7 +1545,7 @@ function ScanTab({ userEmail }) {
    if (!images.length) return setError(t("err_add_photo"));
     setError(""); setResult(null); setLoading(true); setStep(0);
     try {
-      const res = await scanProduct(images, desc);
+    const res = await scanProduct(images, desc, lang);
       setResult(res);
    const { data: { session: authSession } } = await supabase.auth.getSession();
 const currentUserId = authSession?.user?.id;
