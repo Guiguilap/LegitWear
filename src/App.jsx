@@ -2034,7 +2034,7 @@ const handleCheckout = async plan => {
  const res = await fetch("/api/create-checkout-session", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ priceId: PRICE_IDS[plan], email: user, userId, locale: lang }),
+  body: JSON.stringify({ priceId: PRICE_IDS[plan], email: user, userId, locale: lang }),
   });
     const data = await res.json();
     if (data.url) window.location.href = data.url;
