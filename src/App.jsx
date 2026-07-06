@@ -2031,10 +2031,10 @@ const handleCheckout = async plan => {
   const { data: { session: authSession } } = await supabase.auth.getSession();
   const userId = authSession?.user?.id;
 
-  const res = await fetch("/api/create-checkout-session", {
+ const res = await fetch("/api/create-checkout-session", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ priceId: PRICE_IDS[plan], email: user, userId }),
+    body: JSON.stringify({ priceId: PRICE_IDS[plan], email: user, userId, locale: lang }),
   });
     const data = await res.json();
     if (data.url) window.location.href = data.url;
