@@ -1679,14 +1679,14 @@ function HistoryTab({ userEmail, onView }) {
     return () => { active = false; };
   }, [userEmail]);
 
-  if (history === null) {
-    return <div className="history-empty">Chargement...</div>;
+ if (history === null) {
+    return <div className="history-empty">{t("loading_generic")}</div>;
   }
 
   if (!history.length) return (
     <div className="history-empty">
-      <div className="history-empty-title">Aucune analyse pour l'instant</div>
-      <div className="history-empty-sub">Vos scans apparaîtront ici après votre première analyse.</div>
+      <div className="history-empty-title">{t("history_empty_title")}</div>
+      <div className="history-empty-sub">{t("history_empty_sub")}</div>
     </div>
   );
   return (
