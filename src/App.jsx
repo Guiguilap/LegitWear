@@ -839,7 +839,7 @@ function exportPDF(result, lang = "fr") {
       + i.zone + "</td><td style='padding:8px 12px;border-bottom:1px solid #f0ede8;font-size:13px;color:#1A1814'>"
       + (i.type === "ok" ? "✓ " : "✗ ") + i.description + "</td></tr>";
   }).join("");
-  const dateStr = new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+const dateStr = new Date().toLocaleDateString(lang === "en" ? "en-US" : "fr-FR", { day: "numeric", month: "long", year: "numeric" });
   const html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><style>"
     + "body{font-family:'Helvetica Neue',sans-serif;background:#F7F4EF;color:#1A1814;padding:48px;max-width:680px;margin:0 auto}"
     + ".sub{font-size:11px;color:#A8A39C;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:28px}"
