@@ -1484,7 +1484,7 @@ if (signInError) {
 
 // ─── RESULT ──────────────────────────────────────────────────────────────────
 function ResultCard({ result }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const cls = result.verdict;
   const label = cls === "authentic" ? t("verdict_authentic") : cls === "fake" ? t("verdict_fake") : t("verdict_uncertain");
   return (
