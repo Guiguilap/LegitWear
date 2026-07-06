@@ -985,10 +985,7 @@ function Landing({ onLogin, onSignup, onShare, onCheckout, onCGU, onHow, onConta
             </div>
           ))}
         </div>
-       </div>
-      </section>
-
-      <div className="divider" />
+    <div style={{marginTop:28}}><button className="btn btn-outline" onClick={onHow}>{t("learn_more")}</button></div>
       </section>
 
       <div className="divider" />
