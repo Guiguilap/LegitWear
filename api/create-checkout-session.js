@@ -12,7 +12,7 @@ const { priceId, email, userId, locale } = req.body;
   }
 
   try {
-  const session = await stripe.checkout.sessions.create({
+ const session = await stripe.checkout.sessions.create({
   mode: 'subscription',
   payment_method_types: ['card'],
   line_items: [{ price: priceId, quantity: 1 }],
@@ -22,6 +22,7 @@ const { priceId, email, userId, locale } = req.body;
   },
   metadata: { userId: userId || '' },
   customer_email: email || undefined,
+  locale: locale === 'en' ? 'en' : 'fr',
   success_url: `${req.headers.origin}/?session_id={CHECKOUT_SESSION_ID}`,
   cancel_url: `${req.headers.origin}/`,
 });
