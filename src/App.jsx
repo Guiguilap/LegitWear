@@ -350,7 +350,7 @@ const STYLES = `
   ::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
 
   .nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 12px;height:56px;background:rgba(247,244,239,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border2)}
-.nav-logo{font-family:'Syne',sans-serif;font-size:8px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);cursor:pointer}
+.nav-logo{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);cursor:pointer}
   .nav-center{display:none;gap:28px}
   .nav-link{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);cursor:pointer;transition:color 0.2s;font-weight:400}
   .nav-link:hover{color:var(--ink)}
