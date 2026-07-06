@@ -1377,20 +1377,20 @@ function ReferralPage({ user, onBack, onSignup, showToast }) {
         </div>
       </div>
       {user ? (
-        !stats ? (
-          <div style={{textAlign:"center", padding:"24px"}}>Chargement...</div>
+       !stats ? (
+          <div style={{textAlign:"center", padding:"24px"}}>{t("loading_generic")}</div>
         ) : (
           <>
             <div className="referral-stats">
-              <div className="referral-stat"><div className="referral-stat-val">{stats.invited}</div><div className="referral-stat-label">Invités</div></div>
-              <div className="referral-stat"><div className="referral-stat-val">{stats.joined}</div><div className="referral-stat-label">Inscrits</div></div>
-              <div className="referral-stat"><div className="referral-stat-val">{stats.scansEarned}</div><div className="referral-stat-label">Scans gagnés</div></div>
+              <div className="referral-stat"><div className="referral-stat-val">{stats.invited}</div><div className="referral-stat-label">{t("referral_stat_invited")}</div></div>
+              <div className="referral-stat"><div className="referral-stat-val">{stats.joined}</div><div className="referral-stat-label">{t("referral_stat_joined")}</div></div>
+              <div className="referral-stat"><div className="referral-stat-val">{stats.scansEarned}</div><div className="referral-stat-label">{t("referral_stat_earned")}</div></div>
             </div>
             <div className="referral-box">
-              <div className="referral-box-title">Ton code de parrainage</div>
+              <div className="referral-box-title">{t("referral_box_title")}</div>
               <div className="referral-code-wrap">
                 <div className="referral-code">{code}</div>
-                <button className={"referral-copy-btn" + (copied ? " copied" : "")} onClick={copy}>{copied ? "Copié ✓" : "Copier"}</button>
+                <button className={"referral-copy-btn" + (copied ? " copied" : "")} onClick={copy}>{copied ? t("referral_copied") : t("referral_copy")}</button>
               </div>
               <div className="referral-share-btns">
                 <button className="referral-share-btn" onClick={() => share("whatsapp")}>💬 WhatsApp</button>
