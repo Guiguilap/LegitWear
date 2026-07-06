@@ -1708,6 +1708,7 @@ function HistoryTab({ userEmail, onView }) {
 }
 
 function Dashboard({ userEmail, onShare, onReferral }) {
+  const { t, lang } = useLang();
   const [tab, setTab] = useState("scan");
   const [modal, setModal] = useState(null);
 const [name, setName] = useState("vous");
