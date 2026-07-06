@@ -1721,14 +1721,14 @@ useEffect(() => {
 }, [userEmail]);
   return (
     <div className="dashboard">
-      <div className="dash-header">
-        <div className="dash-greeting">Bonjour, <em>{name}</em>.</div>
-        <div className="dash-sub">Analysez un article ou consultez votre historique.</div>
+     <div className="dash-header">
+        <div className="dash-greeting">{t("dash_greeting_pre")}<em>{name}</em>.</div>
+        <div className="dash-sub">{t("dash_sub")}</div>
       </div>
       <div className="tabs">
-        <div className={"tab" + (tab === "scan" ? " active" : "")} onClick={() => setTab("scan")}>Analyser</div>
-        <div className={"tab" + (tab === "history" ? " active" : "")} onClick={() => setTab("history")}>Historique</div>
-        <div className={"tab" + (tab === "referral" ? " active" : "")} onClick={() => setTab("referral")}>🎁 Parrainer</div>
+        <div className={"tab" + (tab === "scan" ? " active" : "")} onClick={() => setTab("scan")}>{t("tab_scan")}</div>
+        <div className={"tab" + (tab === "history" ? " active" : "")} onClick={() => setTab("history")}>{t("tab_history")}</div>
+        <div className={"tab" + (tab === "referral" ? " active" : "")} onClick={() => setTab("referral")}>{t("tab_referral")}</div>
       </div>
       <div className="tab-content">
         {tab === "scan" && <ScanTab userEmail={userEmail} />}
