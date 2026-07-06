@@ -857,8 +857,8 @@ const dateStr = new Date().toLocaleDateString(lang === "en" ? "en-US" : "fr-FR",
     + "<div class='score'>" + result.score + "<span style='font-size:16px'>%</span></div>"
     + "<div class='summary'>" + result.summary + "</div>"
     + "<table>" + issueRows + "</table>"
-    + (result.advice ? "<div class='advice'><strong>Conseil :</strong> " + result.advice + "</div>" : "")
-    + "<div class='footer'>Généré par LegitWear · " + dateStr + " · Service indicatif, non contractuel.</div>"
+ + (result.advice ? "<div class='advice'><strong>" + translate(lang, "advice_label") + "</strong> " + result.advice + "</div>" : "")
+    + "<div class='footer'>" + translate(lang, "pdf_footer_prefix") + dateStr + translate(lang, "pdf_footer_suffix") + "</div>"
     + "</body></html>";
   const win = window.open("", "_blank");
   if (win) { win.document.write(html); win.document.close(); setTimeout(function() { win.print(); }, 400); }
