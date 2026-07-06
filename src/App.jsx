@@ -770,7 +770,7 @@ const clearSession = () => localStorage.removeItem("lw_session");
 const getHistory = email => (getUsers()[email]?.history || []);
 const addHistory = (email, item) => {
   const u = getUsers();
-if (!userId) return;
+  if (!u[email]) return;
   u[email].history = [item, ...(u[email].history || [])].slice(0, 50);
   saveUsers(u);
 };
@@ -1591,9 +1591,11 @@ if (currentUserId) {
   }
 }
 addHistory(userEmail, { ...res, date: new Date().toISOString(), thumb: images[0]?.url });
+      setLoading(false);
     } catch(e) {
-    setError(t("err_scan_failed"));
-    setLoading(false);
+      setError(t("err_scan_failed"));
+      setLoading(false);
+    }
   };
   const reset = () => { setImages([]); setDesc(""); setResult(null); setError(""); };
   if (loading) return (
