@@ -1620,9 +1620,7 @@ addHistory(userEmail, { ...res, date: new Date().toISOString(), thumb: images[0]
         <input ref={ref} type="file" accept="image/*,image/heic,image/heif" multiple onChange={e => addFiles(e.target.files)} />
         <div className="upload-icon">↑</div>
        <div className="upload-title">{t("upload_title")}</div>
-        <div className="upload-hint">{t("upload_hint")}</div>
-        <div className="upload-hint">Logo, couture, étiquette, semelle — jusqu'à 6 photos</div>
-      </div>
+      <div className="upload-hint">{t("upload_hint")}</div>
       {images.length > 0 && (
         <div className="preview-grid">
           {images.map((img, i) => (
