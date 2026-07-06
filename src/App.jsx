@@ -1397,17 +1397,17 @@ function ReferralPage({ user, onBack, onSignup, showToast }) {
                 <button className="referral-share-btn" onClick={() => share("twitter")}>𝕏 Twitter</button>
               </div>
             </div>
-            <div style={{fontSize:11,color:"var(--ink-faint)",textAlign:"center",fontWeight:300,lineHeight:1.7}}>
-              Les scans bonus sont crédités dès que ton filleul effectue son premier scan.<br/>
-              Valable uniquement pour les nouveaux comptes.
+           <div style={{fontSize:11,color:"var(--ink-faint)",textAlign:"center",fontWeight:300,lineHeight:1.7}}>
+              {t("referral_footer_note")}<br/>
+              {t("referral_footer_note2")}
             </div>
           </>
         )
       ) : (
         <div className="referral-need-account">
-          <div className="referral-need-account-title">Crée un compte pour parrainer</div>
-          <div className="referral-need-account-sub">Tu dois être connecté pour accéder à ton code de parrainage personnel.</div>
-          <button className="btn btn-primary btn-lg" onClick={onSignup}>Créer un compte gratuit</button>
+          <div className="referral-need-account-title">{t("referral_need_account_title")}</div>
+          <div className="referral-need-account-sub">{t("referral_need_account_sub")}</div>
+          <button className="btn btn-primary btn-lg" onClick={onSignup}>{t("referral_create_free")}</button>
         </div>
       )}
     </div>
