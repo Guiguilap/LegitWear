@@ -6,8 +6,7 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
-const { priceId, email, userId } = req.body;
-
+const { priceId, email, userId, locale } = req.body;
   if (!priceId) {
     return res.status(400).json({ error: 'Price ID manquant' });
   }
