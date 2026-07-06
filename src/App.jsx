@@ -1308,9 +1308,9 @@ function ContactPage({ onBack }) {
 }
 // ─── PARRAINAGE ───────────────────────────────────────────────────────────────
 function ReferralPage({ user, onBack, onSignup, showToast }) {
+  const { t } = useLang();
   const [code, setCode] = useState(null);
   const [stats, setStats] = useState(null);
-
   useEffect(() => {
     if (!user) { setCode(null); setStats(null); return; }
     (async () => {
