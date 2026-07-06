@@ -985,9 +985,10 @@ function Landing({ onLogin, onSignup, onShare, onCheckout, onCGU, onHow, onConta
             </div>
           ))}
         </div>
-        <div style={{marginTop:28}}>
-       <button className="btn btn-outline" style={{width:"100%",padding:"12px",marginTop:4}} onClick={reset}>{t("new_scan_btn")}</button>
-        </div>
+       </div>
+      </section>
+
+      <div className="divider" />
       </section>
 
       <div className="divider" />
