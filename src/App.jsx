@@ -1514,7 +1514,7 @@ function ResultCard({ result }) {
           </>
         )}
         {result.advice && <div className="advice-box"><strong>{t("advice_label")}</strong> {result.advice}</div>}
-        <button className="pdf-btn" onClick={() => exportPDF(result)}>{t("pdf_btn")}</button>
+        <button className="pdf-btn" onClick={() => exportPDF(result, lang)}>{t("pdf_btn")}</button>
       </div>
     </div>
   );
