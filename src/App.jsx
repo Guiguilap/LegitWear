@@ -1696,10 +1696,10 @@ function HistoryTab({ userEmail, onView }) {
           {item.thumb ? <img className="history-thumb" src={item.thumb} alt="" /> : <div className="history-thumb" />}
           <div style={{flex:1,minWidth:0}}>
             <div className="history-brand">{item.brand}{item.product_type ? " — " + item.product_type : ""}</div>
-            <div className="history-meta">{new Date(item.date).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"})} · {item.score}% confiance</div>
+           <div className="history-meta">{new Date(item.date).toLocaleDateString(lang === "en" ? "en-US" : "fr-FR",{day:"numeric",month:"long",year:"numeric"})} · {item.score}{t("confidence_label")}</div>
           </div>
           <div className={"verdict-tag " + item.verdict}>
-            {item.verdict === "authentic" ? "Authentique" : item.verdict === "fake" ? "Contrefaçon" : "Incertain"}
+            {item.verdict === "authentic" ? t("verdict_authentic") : item.verdict === "fake" ? t("verdict_fake") : t("verdict_uncertain")}
           </div>
         </div>
       ))}
