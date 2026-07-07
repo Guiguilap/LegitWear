@@ -12,7 +12,7 @@ export default async function handler(req, res) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "LegitWear <onboarding@resend.dev>",
+     from: "LegitWear <contact@legitwear.pro>",
         to: "legitwear.contact1@gmail.com",
         reply_to: email,
         subject: `[Contact LegitWear] ${subject || "Nouveau message"}`,
