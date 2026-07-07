@@ -1297,11 +1297,12 @@ const send = async () => {
         </div>
       </div>
 
-      {sent ? (
-        <div className="contact-success">
-          {t("contact_success")}
-        </div>
-      ) : (
+  {sent ? (
+            <div className="contact-success contact-success-animated">
+              <div className="contact-success-check">✓</div>
+              <div>{t("contact_success")}</div>
+            </div>
+          ) : (
         <>
           <div className="contact-form-title">{t("contact_form_title")}</div>
           <div className="field">
