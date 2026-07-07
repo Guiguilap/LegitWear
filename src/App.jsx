@@ -211,7 +211,7 @@ footer_legal_text: { fr: "LegitWear est un outil d'aide à la décision basé su
   contact_email_label: { fr: "Email", en: "Email" },
   contact_delay_label: { fr: "Délai de réponse", en: "Response time" },
   contact_delay_val: { fr: "Sous 24h ouvrées", en: "Within 24 business hours" },
-  contact_success: { fr: "✓ Message envoyé ! On vous répondra dans les 24h à l'adresse indiquée.", en: "✓ Message sent! We'll reply within 24h at the address provided." },
+ contact_success: { fr: "Message envoyé ! On vous répondra dans les 24h à l'adresse indiquée.", en: "Message sent! We'll reply within 24h at the address provided." },
   contact_form_title: { fr: "Envoyer un message", en: "Send a message" },
   contact_label_email: { fr: "Votre email", en: "Your email" },
   contact_label_subject: { fr: "Sujet", en: "Subject" },
