@@ -1267,7 +1267,7 @@ const send = async () => {
       const res = await fetch("/api/send-contact-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, subject, message }),
+       body: JSON.stringify({ email, subject, message, website }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Erreur d'envoi");
