@@ -1257,6 +1257,7 @@ function ContactPage({ onBack }) {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot, doit rester vide
   const send = async () => {
     if (!email || !message) return;
     setSending(true);
