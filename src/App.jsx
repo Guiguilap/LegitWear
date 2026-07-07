@@ -1297,10 +1297,33 @@ const send = async () => {
         </div>
       </div>
 
-  {sent ? (
-            <div className="contact-success contact-success-animated">
-              <div className="contact-success-check">✓</div>
+{sent ? (
+            <div className="contact-success" style={{ textAlign: "center", padding: "24px" }}>
+              <div
+                style={{
+                  width: "56px",
+                  height: "56px",
+                  borderRadius: "50%",
+                  background: "#22c55e",
+                  color: "white",
+                  fontSize: "28px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  margin: "0 auto 16px",
+                  animation: "popIn 0.4s ease-out",
+                }}
+              >
+                ✓
+              </div>
               <div>{t("contact_success")}</div>
+              <style>{`
+                @keyframes popIn {
+                  0% { transform: scale(0); opacity: 0; }
+                  60% { transform: scale(1.15); opacity: 1; }
+                  100% { transform: scale(1); }
+                }
+              `}</style>
             </div>
           ) : (
         <>
