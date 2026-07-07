@@ -1308,6 +1308,15 @@ const send = async () => {
             <label>{t("contact_label_email")}</label>
             <input type="email" placeholder="vous@email.com" value={email} onChange={e => setEmail(e.target.value)} />
           </div>
+          <input
+                type="text"
+                name="website"
+                value={website}
+                onChange={e => setWebsite(e.target.value)}
+                style={{ position: "absolute", left: "-9999px", opacity: 0 }}
+                tabIndex="-1"
+                autoComplete="off"
+              />
           <div className="field">
             <label>{t("contact_label_subject")}</label>
             <select className="contact-select" value={subject} onChange={e => setSubject(e.target.value)}>
