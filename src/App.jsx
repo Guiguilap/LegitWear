@@ -1255,9 +1255,26 @@ function ContactPage({ onBack }) {
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
-  const send = () => {
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+  const send = async () => {
     if (!email || !message) return;
-    setSent(true);
+    setSending(true);
+    setError("");
+    try {
+      const res = await fetch("/api/send-contact-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, subject, message }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Erreur d'envoi");
+      setSent(true);
+    } catch (e) {
+      setError("Erreur lors de l'envoi. Réessaie ou écris directement à legitwear.contact1@gmail.com.");
+    } finally {
+      setSending(false);
+    }
   };
   return (
     <div className="contact-page">
