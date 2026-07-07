@@ -1321,8 +1321,9 @@ function ContactPage({ onBack }) {
             <label>{t("contact_label_message")}</label>
             <textarea placeholder={t("contact_message_placeholder")} value={message} onChange={e => setMessage(e.target.value)} style={{minHeight:120}} />
           </div>
-          <button className="btn btn-primary btn-lg" style={{width:"100%"}} onClick={send} disabled={!email || !message}>
-            {t("contact_send")}
+         {error && <div className="err">{error}</div>}
+          <button className="btn btn-primary btn-lg" style={{width:"100%"}} onClick={send} disabled={!email || !message || sending}>
+            {sending ? "…" : t("contact_send")}
           </button>
           <div style={{fontSize:11,color:"var(--ink-faint)",marginTop:12,textAlign:"center",fontWeight:300}}>
             {t("contact_disclaimer")}
