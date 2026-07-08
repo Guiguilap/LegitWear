@@ -730,7 +730,7 @@ const STYLES = `
   .referral-need-account{text-align:center;padding:48px 24px;background:var(--cream2);border:1px solid var(--border);border-radius:6px}
   .referral-need-account-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px}
   .referral-need-account-sub{font-size:13px;color:var(--ink-soft);font-weight:300;margin-bottom:20px}
-@media(max-width:380px){
+@media(max-width:639px){
     .nav{padding:0 8px}
     .nav-logo{font-size:15px}
     .nav-actions{gap:4px}
