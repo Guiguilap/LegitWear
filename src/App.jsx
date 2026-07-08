@@ -887,8 +887,9 @@ function Navbar({ user, onLogin, onSignup, onLogout, onDashboard, onHome, onShar
   const users = getUsers();
   const name = user ? (users[user]?.name || user.split("@")[0]) : "";
   const initial = name.charAt(0).toUpperCase();
-  return (
+ return (
     <nav className="nav">
+      <div className="nav-logo" onClick={onHome}>LegitWear</div>
       <div className={"nav-center" + (navOpen ? " nav-center-open" : "")}>
         <span className="nav-link" onClick={() => { setNavOpen(false); onHome(); }}>{t("nav_home")}</span>
         <span className="nav-link" onClick={() => { setNavOpen(false); onHow(); }}>{t("nav_how")}</span>
@@ -898,7 +899,6 @@ function Navbar({ user, onLogin, onSignup, onLogout, onDashboard, onHome, onShar
       <button className="nav-burger" onClick={() => setNavOpen(o => !o)}>
         {navOpen ? "✕" : "☰"}
       </button>
-      </div>
       <div className="nav-actions">
         <LangToggle />
         {user ? (
