@@ -736,6 +736,8 @@ const STYLES = `
     .nav-actions{gap:4px}
     .lang-toggle-option{padding:4px 8px;font-size:9px}
     .nav-actions .btn{padding:6px 8px;font-size:9px;letter-spacing:0.06em}
+    .nav-burger{display:block}
+    .nav-center-open{display:flex!important;flex-direction:column;position:absolute;top:56px;left:0;right:0;background:var(--cream);padding:16px 20px;gap:16px;border-bottom:1px solid var(--border);z-index:10}
   }
   @media(min-width:640px){
     .nav{padding:0 36px}
