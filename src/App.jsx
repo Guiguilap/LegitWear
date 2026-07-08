@@ -874,6 +874,7 @@ const dateStr = new Date().toLocaleDateString(lang === "en" ? "en-US" : "fr-FR",
 function Navbar({ user, onLogin, onSignup, onLogout, onDashboard, onHome, onShare, onSwitchAccount, onHow, onContact, onReferral }) {
   const { t } = useLang();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
   const menuRef = useRef();
   useEffect(() => {
     const close = e => { if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false); };
