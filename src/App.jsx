@@ -1408,7 +1408,7 @@ function ReferralPage({ user, onBack, onSignup, showToast }) {
   }, [user]);
 
   const [copied, setCopied] = useState(false);
-  const url = typeof window !== "undefined" ? window.location.href.split("?")[0] + "?ref=" + code : "";
+  const url = "https://legitwear.pro/?ref=" + code;
   const copy = () => { navigator.clipboard.writeText(code).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); }); };
   const share = method => {
     const text = "J'utilise LegitWear pour vérifier l'authenticité de mes articles streetwear et luxe. Essaie avec mon code " + code + " et on gagne chacun 2 scans gratuits !";
