@@ -2160,7 +2160,7 @@ const t = key => translate(lang, key);
 }, []);
   const showToastMsg = msg => { setToast(msg); setToastVisible(true); setTimeout(() => setToastVisible(false), 2500); };
   const goAuth = mode => { setAuthMode(mode); setPage("auth"); };
-  const onAuthSuccess = email => { setUser(email); setPage("dashboard"); showToastMsg("Connecté 👋"); };
+ const onAuthSuccess = email => { setSession(email); setUser(email); setPage("dashboard"); showToastMsg("Connecté 👋"); };
   const onLogout = () => { clearSession(); setUser(null); setPage("landing"); showToastMsg("Déconnecté."); };
   const onSwitchAccount = () => { clearSession(); setUser(null); setAuthMode("login"); setPage("auth"); };
  const PRICE_IDS = {
