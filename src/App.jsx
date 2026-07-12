@@ -1831,7 +1831,7 @@ useEffect(() => {
 
 function ShareModal({ onClose }) {
   const { t } = useLang();
-  const url = typeof window !== "undefined" ? window.location.href : "https://legitwear.app";
+ const url = "https://legitwear.pro";
   const [copied, setCopied] = useState(false);
   const copy = () => {
     navigator.clipboard.writeText(url).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); });
