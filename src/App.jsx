@@ -1834,16 +1834,17 @@ function ShareModal({ onClose }) {
  const url = "https://legitwear.pro";
   const [copied, setCopied] = useState(false);
   const copy = () => {
-    navigator.clipboard.writeText(url).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); });
-  };
-  const share = method => {
+ const share = method => {
     const text = "LegitWear — Détecte les contrefaçons en secondes grâce à l'IA";
     const eu = encodeURIComponent(url);
     const et = encodeURIComponent(text);
-    if (method === "twitter") window.open("https://twitter.com/intent/tweet?text=" + et + "&url=" + eu, "_blank");
     if (method === "whatsapp") window.open("https://wa.me/?text=" + et + "%20" + eu, "_blank");
-    if (method === "native" && navigator.share) navigator.share({ title: "LegitWear", text, url });
     if (method === "sms") window.open("sms:?body=" + et + "%20" + eu);
+    if (method === "instagram") {
+      navigator.clipboard.writeText(text + " " + url).then(() => {
+        window.open("https://www.instagram.com/", "_blank");
+      });
+    }
   };
   return (
     <div className="overlay" onClick={onClose}>
