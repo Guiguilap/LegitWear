@@ -1742,7 +1742,18 @@ addHistory(userEmail, { ...res, date: new Date().toISOString(), thumb: images[0]
      <label>{t("desc_label")}</label>
         <textarea placeholder={t("desc_placeholder")} value={desc} onChange={e => setDesc(e.target.value)} />
       </div>
-      {error && <div className="err">{error}</div>}
+    {error && (
+        <div className="err">
+          {error}
+          {error.includes(lang === "en" ? "Upgrade" : "limite") && (
+            <div style={{marginTop:10}}>
+              <button className="btn btn-outline" style={{fontSize:10,padding:"7px 14px"}} onClick={onUpgrade}>
+                {lang === "en" ? "View plans →" : "Voir les abonnements →"}
+              </button>
+            </div>
+          )}
+        </div>
+      )}
       <button className="btn btn-primary btn-lg" style={{width:"100%",marginTop:16}} onClick={scan} disabled={!images.length}>
     {images.length ? t("analyze_btn_prefix") + images.length + (images.length > 1 ? t("photo_plural") : t("photo_singular")) : t("add_photos_btn")}
       </button>
