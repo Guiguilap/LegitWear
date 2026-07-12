@@ -2202,7 +2202,7 @@ const onHome = () => setPage("landing");
       {page === "contact" && <ContactPage onBack={onHome} />}
       {page === "referral" && <ReferralPage user={user} onBack={onHome} onSignup={() => goAuth("signup")} showToast={showToastMsg} />}
       {page === "auth" && <AuthPage mode={authMode} onSuccess={onAuthSuccess} onToggle={() => setAuthMode(m => m === "login" ? "signup" : "login")} onBack={() => setPage(user ? "dashboard" : "landing")} />}
-      {page === "dashboard" && user && <Dashboard userEmail={user} onShare={() => setShowShare(true)} onReferral={() => setPage("referral")} />}
+   {page === "dashboard" && user && <Dashboard userEmail={user} onShare={() => setShowShare(true)} onReferral={() => setPage("referral")} onUpgrade={goPricing} />}
      {page === "success" && <SuccessPage onDashboard={() => { setPage("dashboard"); }} />} {page === "cgu" && <CGUPage onBack={onHome} />}
       {showShare && <ShareModal onClose={() => setShowShare(false)} />}
       <div className={"toast" + (toastVisible ? " show" : "")}>{toast}</div>
