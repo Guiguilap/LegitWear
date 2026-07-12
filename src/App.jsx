@@ -735,7 +735,7 @@ const STYLES = `
     .nav{padding:0 8px}
     .nav-logo{font-size:11px}
     .nav-actions{gap:4px}
-    .lang-toggle{margin-right:8px}
+    .lang-toggle{margin-right:20px}
     .lang-toggle-option{padding:4px 8px;font-size:9px}
     .nav-actions .btn{padding:6px 8px;font-size:9px;letter-spacing:0.06em}
     .nav-actions .btn-ghost{display:none}
