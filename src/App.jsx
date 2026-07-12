@@ -1837,7 +1837,7 @@ useEffect(() => {
         <div className={"tab" + (tab === "referral" ? " active" : "")} onClick={() => setTab("referral")}>{t("tab_referral")}</div>
       </div>
       <div className="tab-content">
-        {tab === "scan" && <ScanTab userEmail={userEmail} />}
+       {tab === "scan" && <ScanTab userEmail={userEmail} onUpgrade={onUpgrade} />}
         {tab === "history" && <HistoryTab userEmail={userEmail} onView={setModal} />}
         {tab === "referral" && <ReferralPage user={userEmail} onBack={() => setTab("scan")} onSignup={() => {}} showToast={() => {}} />}
       </div>
