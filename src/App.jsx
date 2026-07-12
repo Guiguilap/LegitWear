@@ -2177,7 +2177,13 @@ const handleCheckout = async plan => {
     showToastMsg("Erreur paiement, réessaie.");
   }
 };
-  const onHome = () => setPage("landing");
+const onHome = () => setPage("landing");
+  const goPricing = () => {
+    setPage("landing");
+    setTimeout(() => {
+      document.querySelector(".pricing-section")?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
 
   const navProps = {
     user, onLogin: () => goAuth("login"), onSignup: () => goAuth("signup"),
