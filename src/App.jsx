@@ -1612,9 +1612,41 @@ function ScanTab({ userEmail }) {
     const converted = await Promise.all(arr.map(toBase64));
     setImages(p => [...p, ...converted].slice(0, 6));
   };
-  const scan = async () => {
+const scan = async () => {
    if (!images.length) return setError(t("err_add_photo"));
-    setError(""); setResult(null); setLoading(true); setStep(0);
+    setError("");
+
+    const { data: { session: authSession } } = await supabase.auth.getSession();
+    const uid = authSession?.user?.id;
+    if (uid) {
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('subscription_tier')
+        .eq('id', uid)
+        .single();
+      const tier = profile?.subscription_tier || 'free';
+      const LIMITS = { free: 3, starter: 20, pro: Infinity, premium: Infinity };
+      const limit = LIMITS[tier] ?? 3;
+
+      if (limit !== Infinity) {
+        const startOfMonth = new Date();
+        startOfMonth.setDate(1);
+        startOfMonth.setHours(0,0,0,0);
+        const { count } = await supabase
+          .from('scan_history')
+          .select('id', { count: 'exact', head: true })
+          .eq('user_id', uid)
+          .gte('created_at', startOfMonth.toISOString());
+        if ((count || 0) >= limit) {
+          setError(lang === "en"
+            ? `You've reached your monthly scan limit (${limit}). Upgrade your plan to continue.`
+            : `Tu as atteint ta limite de scans ce mois-ci (${limit}). Passe à un plan supérieur pour continuer.`);
+          return;
+        }
+      }
+    }
+
+    setResult(null); setLoading(true); setStep(0);
     try {
     const res = await scanProduct(images, desc, lang);
       setResult(res);
