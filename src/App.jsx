@@ -1625,7 +1625,7 @@ const scan = async () => {
         .eq('id', uid)
         .single();
       const tier = profile?.subscription_tier || 'free';
-      const LIMITS = { free: 3, starter: 20, pro: Infinity, premium: Infinity };
+     const LIMITS = { free: 2, starter: 20, pro: Infinity, premium: Infinity };
       const limit = LIMITS[tier] ?? 3;
 
       if (limit !== Infinity) {
