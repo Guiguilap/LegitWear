@@ -1842,9 +1842,14 @@ const [copied, setCopied] = useState(false);
     const et = encodeURIComponent(text);
     if (method === "whatsapp") window.open("https://wa.me/?text=" + et + "%20" + eu, "_blank");
     if (method === "sms") window.open("sms:?body=" + et + "%20" + eu);
-    if (method === "instagram") {
+ if (method === "instagram") {
       navigator.clipboard.writeText(text + " " + url).then(() => {
         window.open("https://www.instagram.com/", "_blank");
+      });
+    }
+    if (method === "tiktok") {
+      navigator.clipboard.writeText(text + " " + url).then(() => {
+        window.open("https://www.tiktok.com/upload", "_blank");
       });
     }
   };
