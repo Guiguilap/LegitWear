@@ -894,7 +894,8 @@ function Navbar({ user, onLogin, onSignup, onLogout, onDashboard, onHome, onShar
         <span className="nav-link" onClick={() => { setNavOpen(false); onHome(); }}>{t("nav_home")}</span>
         <span className="nav-link" onClick={() => { setNavOpen(false); onHow(); }}>{t("nav_how")}</span>
         <span className="nav-link" onClick={() => { setNavOpen(false); onContact(); }}>{t("nav_contact")}</span>
-        <span className="nav-link" onClick={() => { setNavOpen(false); onShare(); }}>{t("nav_share")}</span>
+      <span className="nav-link" onClick={() => { setNavOpen(false); onShare(); }}>{t("nav_share")}</span>
+        {!user && <span className="nav-link nav-link-login" onClick={() => { setNavOpen(false); onLogin(); }}>{t("nav_login")}</span>}
       </div>
       <button className="nav-burger" onClick={() => setNavOpen(o => !o)}>
         {navOpen ? "✕" : "☰"}
