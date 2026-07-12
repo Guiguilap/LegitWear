@@ -110,7 +110,7 @@ const TRANSLATIONS = {
   price_desc_starter: { fr: "Pour débuter et vérifier tes achats occasionnels.", en: "To get started and check your occasional purchases." },
   price_desc_pro: { fr: "Pour les resellers et acheteurs réguliers.", en: "For resellers and regular buyers." },
   price_desc_premium: { fr: "L'expérience ultime. Pour ceux qui ne transigent pas.", en: "The ultimate experience. For those who don't compromise." },
-  feat_scans3: { fr: "3 scans par mois", en: "3 scans per month" },
+feat_scans3: { fr: "2 scans par mois", en: "2 scans per month" },
   feat_verdict_simple: { fr: "Verdict simple", en: "Simple verdict" },
   feat_indice1: { fr: "1 indice par scan", en: "1 clue per scan" },
   feat_history: { fr: "Historique", en: "History" },
