@@ -733,7 +733,7 @@ const STYLES = `
   .referral-need-account-sub{font-size:13px;color:var(--ink-soft);font-weight:300;margin-bottom:20px}
 @media(max-width:639px){
     .nav{padding:0 8px}
-    .nav-logo{font-size:11px}
+    .nav-logo{font-size:14px}
     .nav-actions{gap:4px}
     .lang-toggle{margin-right:20px}
     .lang-toggle-option{padding:4px 8px;font-size:9px}
