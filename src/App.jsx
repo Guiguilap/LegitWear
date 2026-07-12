@@ -354,6 +354,7 @@ const STYLES = `
   .nav-center{display:none;gap:28px}
 .nav-burger{display:none;background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink)}
   .nav-link{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);cursor:pointer;transition:color 0.2s;font-weight:400}
+  .nav-link-login{display:none}
   .nav-link:hover{color:var(--ink)}
 .nav-actions{display:flex;gap:8px;align-items:center}
   .lang-toggle{display:flex;align-items:center;background:var(--cream2);border:1px solid var(--border);border-radius:20px;padding:2px;position:relative;cursor:pointer;font-family:'Space Grotesk',sans-serif;user-select:none}
