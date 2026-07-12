@@ -1813,7 +1813,7 @@ function HistoryTab({ userEmail, onView }) {
   );
 }
 
-function Dashboard({ userEmail, onShare, onReferral }) {
+function Dashboard({ userEmail, onShare, onReferral, onUpgrade }) {
   const { t, lang } = useLang();
   const [tab, setTab] = useState("scan");
   const [modal, setModal] = useState(null);
