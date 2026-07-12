@@ -1832,9 +1832,11 @@ useEffect(() => {
 function ShareModal({ onClose }) {
   const { t } = useLang();
  const url = "https://legitwear.pro";
-  const [copied, setCopied] = useState(false);
+const [copied, setCopied] = useState(false);
   const copy = () => {
- const share = method => {
+    navigator.clipboard.writeText(url).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); });
+  };
+  const share = method => {
     const text = "LegitWear — Détecte les contrefaçons en secondes grâce à l'IA";
     const eu = encodeURIComponent(url);
     const et = encodeURIComponent(text);
