@@ -1861,10 +1861,11 @@ const [copied, setCopied] = useState(false);
             <div className="share-url">{url}</div>
             <button className={"share-copy-btn" + (copied ? " copied" : "")} onClick={copy}>{copied ? t("share_copied") : t("share_copy")}</button>
           </div>
-       <div className="share-methods">
+     <div className="share-methods">
             <button className="share-method" onClick={() => share("whatsapp")}><span className="share-method-icon">💬</span>{t("share_whatsapp")}</button>
             <button className="share-method" onClick={() => share("instagram")}><span className="share-method-icon">📷</span>Instagram</button>
             <button className="share-method" onClick={() => share("sms")}><span className="share-method-icon">📱</span>{t("share_sms")}</button>
+            <button className="share-method" onClick={() => share("tiktok")}><span className="share-method-icon">🎵</span>TikTok</button>
           </div>
         </div>
       </div>
