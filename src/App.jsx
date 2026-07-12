@@ -1858,11 +1858,10 @@ function ShareModal({ onClose }) {
             <div className="share-url">{url}</div>
             <button className={"share-copy-btn" + (copied ? " copied" : "")} onClick={copy}>{copied ? t("share_copied") : t("share_copy")}</button>
           </div>
-          <div className="share-methods">
+       <div className="share-methods">
             <button className="share-method" onClick={() => share("whatsapp")}><span className="share-method-icon">💬</span>{t("share_whatsapp")}</button>
-            <button className="share-method" onClick={() => share("twitter")}><span className="share-method-icon">𝕏</span>{t("share_twitter")}</button>
+            <button className="share-method" onClick={() => share("instagram")}><span className="share-method-icon">📷</span>Instagram</button>
             <button className="share-method" onClick={() => share("sms")}><span className="share-method-icon">📱</span>{t("share_sms")}</button>
-            <button className="share-method" onClick={() => share("native")}><span className="share-method-icon">⬆️</span>{t("share_native")}</button>
           </div>
         </div>
       </div>
