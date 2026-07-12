@@ -733,12 +733,14 @@ const STYLES = `
   .referral-need-account-sub{font-size:13px;color:var(--ink-soft);font-weight:300;margin-bottom:20px}
 @media(max-width:639px){
     .nav{padding:0 8px}
-    .nav-logo{font-size:15px}
+    .nav-logo{font-size:11px}
     .nav-actions{gap:4px}
     .lang-toggle-option{padding:4px 8px;font-size:9px}
     .nav-actions .btn{padding:6px 8px;font-size:9px;letter-spacing:0.06em}
+    .nav-actions .btn-ghost{display:none}
     .nav-burger{display:block}
     .nav-center-open{display:flex!important;flex-direction:column;position:absolute;top:56px;left:0;right:0;background:var(--cream);padding:16px 20px;gap:16px;border-bottom:1px solid var(--border);z-index:10}
+    .nav-center-open .nav-link-login{display:block}
   }
   @media(min-width:640px){
     .nav{padding:0 36px}
